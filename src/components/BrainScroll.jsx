@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const FRAME_COUNT = 119;
+const FRAME_COUNT = 210;
 
 function currentFrame(index) {
   const num = String(index).padStart(3, '0');
