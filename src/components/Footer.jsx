@@ -1,5 +1,5 @@
 import React from 'react';
-import { Brain } from 'lucide-react';
+import OsteraLogo from './OsteraLogo';
 
 export default function Footer() {
   return (
@@ -7,9 +7,12 @@ export default function Footer() {
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1">
-            <div className="flex items-center gap-2 mb-6">
-              <Brain className="w-8 h-8 text-primary" />
-              <span className="text-xl font-bold font-heading tracking-tight text-white">Ostera AI</span>
+            <div className="mb-6">
+              <OsteraLogo
+                className="gap-3"
+                markClassName="h-11 w-11"
+                textClassName="text-xl tracking-[0.14em]"
+              />
             </div>
             <p className="text-gray-400 text-sm mb-6">
               Empowering developers to build the next generation of intelligent applications.

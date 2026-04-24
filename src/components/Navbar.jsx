@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Brain, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
+import OsteraLogo from './OsteraLogo';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -29,10 +30,11 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <div className="flex items-center gap-2">
-          <Brain className="h-8 w-8 text-primary" />
-          <span className="font-heading text-xl font-bold tracking-tight text-white">Ostera AI</span>
-        </div>
+        <OsteraLogo
+          className="gap-2.5"
+          markClassName="h-9 w-9"
+          textClassName="text-lg tracking-[0.12em] sm:text-xl"
+        />
 
         <div className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
