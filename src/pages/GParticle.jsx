@@ -1,52 +1,81 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-const DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-const BRAND_WORDS = ['ostera ai', 'ostera', 'ai'];
+const BASE_PARTICLE_COUNT = 3000; // slightly denser for that beautiful tunnel look
 
-function pickRandom(items) {
-  return items[Math.floor(Math.random() * items.length)];
-}
-
-function createParticle(canvas, config) {
-  const colWidth = canvas.width / config.columns;
-  const colIndex = Math.floor(Math.random() * config.columns);
-  const xOffset = (Math.random() - 0.5) * colWidth * config.spread;
+function createTunnelParticle(canvas, index, total) {
+  const progress = index / total;
+  const lane = index % 240;
+  const laneRatio = lane / 240;
+  const angle = laneRatio * Math.PI * 2;
+  const depth = Math.pow(progress, 0.66);
+  const innerRadius = Math.min(canvas.width, canvas.height) * 0.055;
+  const outerRadius = Math.max(canvas.width, canvas.height) * 0.58;
+  const radius = innerRadius + depth * (outerRadius - innerRadius);
+  const flowX = canvas.width * (0.3 + depth * 0.72);
+  const flowBend = Math.sin(depth * 5.8 + angle * 1.3) * canvas.width * 0.035;
+  const neckPull = (1 - depth) * canvas.width * 0.08;
+  const swirlOffset = depth * 2.6;
+  const tubeTightness = 0.56 + (1 - depth) * 0.34;
+  const verticalSquash = 0.82 - depth * 0.08;
+  const waveX = Math.sin(angle * 2.4 + depth * 10.5) * (8 + depth * 20);
+  const waveY = Math.cos(angle * 1.7 + depth * 8.4) * (10 + depth * 34);
+  const brightness = 0.3 + (1 - depth) * 0.7;
+  const twinkleSeed = Math.random() * Math.PI * 2;
 
   return {
-    layer: config.layer,
-    x: colIndex * colWidth + colWidth / 2 + xOffset,
-    y: Math.random() * canvas.height,
-    vy: config.speed[0] + Math.random() * (config.speed[1] - config.speed[0]),
-    text: pickRandom(config.texts),
-    fontSize: config.fontSize[0] + Math.random() * (config.fontSize[1] - config.fontSize[0]),
-    baseOpacity:
-      config.opacity[0] + Math.random() * (config.opacity[1] - config.opacity[0]),
-    pulseSpeed: Math.random() * 0.008 + config.pulseMin,
-    pulsePhase: Math.random() * Math.PI * 2,
+    baseX:
+      flowX +
+      flowBend -
+      neckPull +
+      Math.cos(angle + swirlOffset) * radius * tubeTightness +
+      waveX,
+    baseY:
+      canvas.height * 0.5 +
+      Math.sin(angle + swirlOffset) * radius * verticalSquash +
+      waveY,
+    x: 0,
+    y: 0,
+    vx: 0,
+    vy: 0,
+    radius: 0.45 + brightness * 2.5 + Math.random() * 1.4,
+    alpha: 0.14 + brightness * 0.78,
+    color:
+      Math.random() < 0.1
+        ? '255, 255, 255'
+        : Math.random() < 0.55
+          ? '96, 232, 255'
+          : '0, 210, 255',
+    twinkleSeed,
+    twinkleSpeed: 0.5 + Math.random() * 1.6,
+    returnStrength: 0.032 + Math.random() * 0.018,
+    repelStrength: 1.4 + (1 - depth) * 4.2,
+    depth: 1 - depth,
   };
 }
 
-function resetParticle(particle, canvas, config) {
-  const colWidth = canvas.width / config.columns;
-  const colIndex = Math.floor(Math.random() * config.columns);
-  const xOffset = (Math.random() - 0.5) * colWidth * config.spread;
+function buildParticles(canvas) {
+  const scaleFactor = Math.min(window.innerWidth / 1440, 1);
+  const total = Math.max(1800, Math.floor(BASE_PARTICLE_COUNT * scaleFactor));
+  const particles = Array.from({ length: total }, (_, index) =>
+    createTunnelParticle(canvas, index, total)
+  );
 
-  particle.x = colIndex * colWidth + colWidth / 2 + xOffset;
-  particle.y = -particle.fontSize - Math.random() * 40;
-  particle.vy = config.speed[0] + Math.random() * (config.speed[1] - config.speed[0]);
-  particle.text = pickRandom(config.texts);
-  particle.fontSize = config.fontSize[0] + Math.random() * (config.fontSize[1] - config.fontSize[0]);
-  particle.baseOpacity =
-    config.opacity[0] + Math.random() * (config.opacity[1] - config.opacity[0]);
+  particles.forEach((particle) => {
+    particle.x = particle.baseX;
+    particle.y = particle.baseY;
+  });
+
+  return particles;
 }
 
 export default function GParticle() {
   const canvasRef = useRef(null);
+  const particlesRef = useRef([]);
   const pointerX = useMotionValue(0);
   const pointerY = useMotionValue(0);
-  const glowX = useSpring(pointerX, { stiffness: 90, damping: 20, mass: 0.5 });
-  const glowY = useSpring(pointerY, { stiffness: 90, damping: 20, mass: 0.5 });
+  const glowX = useSpring(pointerX, { stiffness: 90, damping: 22, mass: 0.5 });
+  const glowY = useSpring(pointerY, { stiffness: 90, damping: 22, mass: 0.5 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -54,97 +83,116 @@ export default function GParticle() {
 
     const ctx = canvas.getContext('2d');
     let animationFrameId;
-
-    const configs = {
-      far: {
-        layer: 'far',
-        texts: DIGITS,
-        columns: 10,
-        spread: 0.85,
-        speed: [0.03, 0.08],
-        fontSize: [10, 14],
-        opacity: [0.03, 0.08],
-        pulseMin: 0.002,
-        color: '148, 163, 184',
-        shadow: 'rgba(59, 130, 246, 0.08)',
-      },
-      medium: {
-        layer: 'medium',
-        texts: DIGITS,
-        columns: 8,
-        spread: 0.7,
-        speed: [0.08, 0.16],
-        fontSize: [12, 18],
-        opacity: [0.07, 0.14],
-        pulseMin: 0.004,
-        color: '125, 211, 252',
-        shadow: 'rgba(56, 189, 248, 0.12)',
-      },
-      brand: {
-        layer: 'brand',
-        texts: BRAND_WORDS,
-        columns: 6,
-        spread: 0.45,
-        speed: [0.05, 0.1],
-        fontSize: [18, 30],
-        opacity: [0.16, 0.28],
-        pulseMin: 0.003,
-        color: '255, 255, 255',
-        shadow: 'rgba(59, 130, 246, 0.25)',
-      },
-    };
+    let lastTime = 0;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(dpr, dpr);
+      particlesRef.current = buildParticles({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
       pointerX.set(window.innerWidth / 2);
       pointerY.set(window.innerHeight / 2);
     };
-
-    window.addEventListener('resize', resize);
-    resize();
-
-    const particles = [
-      ...Array.from({ length: 70 }, () => createParticle(canvas, configs.far)),
-      ...Array.from({ length: 50 }, () => createParticle(canvas, configs.medium)),
-      ...Array.from({ length: 12 }, () => createParticle(canvas, configs.brand)),
-    ];
 
     const handlePointerMove = (event) => {
       pointerX.set(event.clientX);
       pointerY.set(event.clientY);
     };
 
-    window.addEventListener('pointermove', handlePointerMove);
+    const drawBackground = () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
 
-    const drawParticle = (particle) => {
-      const config = configs[particle.layer];
+      // Canvas base background is removed to let the original UI's CSS background and Framer Motion mouse glow shine through!
 
-      particle.y += particle.vy;
+      const vortexGlow = ctx.createRadialGradient(
+        width * 0.58,
+        height * 0.46,
+        0,
+        width * 0.58,
+        height * 0.46,
+        width * 0.42
+      );
+      vortexGlow.addColorStop(0, 'rgba(0, 238, 255, 0.16)');
+      vortexGlow.addColorStop(0.34, 'rgba(0, 140, 255, 0.14)');
+      vortexGlow.addColorStop(0.72, 'rgba(104, 36, 126, 0.10)');
+      vortexGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = vortexGlow;
+      ctx.fillRect(0, 0, width, height);
 
-      if (particle.y > canvas.height + particle.fontSize) {
-        resetParticle(particle, canvas, config);
+      const rightGlow = ctx.createRadialGradient(
+        width * 0.88,
+        height * 0.74,
+        0,
+        width * 0.88,
+        height * 0.74,
+        width * 0.18
+      );
+      rightGlow.addColorStop(0, 'rgba(0, 229, 255, 0.14)');
+      rightGlow.addColorStop(0.48, 'rgba(0, 124, 255, 0.09)');
+      rightGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
+      ctx.fillStyle = rightGlow;
+      ctx.fillRect(0, 0, width, height);
+    };
+
+    const drawParticle = (particle, time) => {
+      const mouseX = pointerX.get();
+      const mouseY = pointerY.get();
+      const dx = particle.x - mouseX;
+      const dy = particle.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy) || 1;
+      const repelRadius = 110 + particle.depth * 110;
+
+      if (dist < repelRadius) {
+        const repelForce = ((repelRadius - dist) / repelRadius) * particle.repelStrength;
+        particle.vx += (dx / dist) * repelForce;
+        particle.vy += (dy / dist) * repelForce;
       }
 
-      particle.pulsePhase += particle.pulseSpeed;
-      const pulse = Math.sin(particle.pulsePhase);
-      const currentOpacity = particle.baseOpacity + pulse * particle.baseOpacity * 0.28;
+      particle.vx += (particle.baseX - particle.x) * particle.returnStrength;
+      particle.vy += (particle.baseY - particle.y) * particle.returnStrength;
+      particle.vx *= 0.9;
+      particle.vy *= 0.9;
+      particle.x += particle.vx;
+      particle.y += particle.vy;
 
-      ctx.font = `${particle.layer === 'brand' ? 600 : 400} ${particle.fontSize}px monospace`;
-      ctx.fillStyle = `rgba(${config.color}, ${Math.max(0.02, currentOpacity)})`;
-      ctx.shadowBlur = particle.layer === 'brand' ? 18 : particle.layer === 'medium' ? 10 : 0;
-      ctx.shadowColor = config.shadow;
-      ctx.fillText(particle.text, particle.x, particle.y);
+      const twinkle = 0.76 + Math.sin(time * particle.twinkleSpeed + particle.twinkleSeed) * 0.24;
+
+      ctx.beginPath();
+      ctx.fillStyle = `rgba(${particle.color}, ${particle.alpha * twinkle})`;
+      ctx.shadowBlur = 8 + particle.radius * 4;
+      ctx.shadowColor = `rgba(${particle.color}, 0.7)`;
+      ctx.arc(particle.x, particle.y, particle.radius * twinkle, 0, Math.PI * 2);
+      ctx.fill();
       ctx.shadowBlur = 0;
     };
 
-    const draw = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(drawParticle);
+    const draw = (time) => {
+      const seconds = time * 0.001;
+      if (!lastTime) lastTime = seconds;
+      lastTime = seconds;
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      drawBackground();
+
+      for (const particle of particlesRef.current) {
+        drawParticle(particle, seconds);
+      }
+
       animationFrameId = requestAnimationFrame(draw);
     };
 
-    draw();
+    resize();
+    window.addEventListener('resize', resize);
+    window.addEventListener('pointermove', handlePointerMove);
+    animationFrameId = requestAnimationFrame(draw);
 
     return () => {
       window.removeEventListener('resize', resize);
@@ -154,11 +202,15 @@ export default function GParticle() {
   }, [pointerX, pointerY]);
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#030712] text-white selection:bg-primary/30">
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.14),transparent_34%),linear-gradient(180deg,#030712_0%,#020617_52%,#01030a_100%)]" />
+    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#040611] text-white selection:bg-primary/30">
+      <motion.div
+        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_25%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_78%_68%,rgba(0,238,255,0.08),transparent_12%),radial-gradient(circle_at_70%_38%,rgba(123,92,255,0.12),transparent_20%)]"
+        animate={{ opacity: [0.6, 0.9, 0.7] }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
 
       <motion.div
-        className="absolute z-0 h-[28rem] w-[28rem] pointer-events-none rounded-full bg-[radial-gradient(circle,rgba(96,165,250,0.16)_0%,rgba(96,165,250,0.08)_26%,transparent_68%)] blur-3xl"
+        className="pointer-events-none absolute z-0 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(0,238,255,0.16)_0%,rgba(0,132,255,0.08)_28%,transparent_68%)] blur-3xl"
         style={{
           left: glowX,
           top: glowY,
@@ -167,28 +219,9 @@ export default function GParticle() {
         }}
       />
 
-      <motion.div
-        animate={{ scale: [1, 1.04, 1], opacity: [0.2, 0.28, 0.2] }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-        className="absolute left-1/2 top-1/2 z-0 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.12)_0%,rgba(59,130,246,0.05)_32%,transparent_70%)] blur-3xl"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 z-0 h-full w-full pointer-events-none" />
 
-      <div
-        className="absolute inset-0 z-0 pointer-events-none opacity-15"
-        style={{
-          backgroundImage: `
-            linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-            linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px)
-          `,
-          backgroundSize: '40px 40px',
-        }}
-      />
-
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.05),transparent_38%)]" />
-      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_42%,rgba(3,7,18,0.62)_100%)]" />
-      <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-[#030712]/30 via-transparent to-[#030712]/80" />
-
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 pointer-events-none opacity-85" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_32%,rgba(3,6,17,0.25)_60%,rgba(3,6,17,0.84)_100%)]" />
 
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6">
         <motion.div
@@ -203,7 +236,7 @@ export default function GParticle() {
             transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
             className="mb-8 flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-slate-300 shadow-sm backdrop-blur-md transition-colors hover:border-primary/40"
           >
-            NEW RESEARCH <span className="text-primary">→</span>
+            NEW RESEARCH <span className="text-primary">{'->'}</span>
           </motion.div>
 
           <motion.h1
@@ -233,7 +266,7 @@ export default function GParticle() {
           >
             <button className="flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-3.5 font-medium text-white shadow-[0_4px_20px_rgba(59,130,246,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_8px_30px_rgba(59,130,246,0.25)]">
               Read our research
-              <span>→</span>
+              <span>{'->'}</span>
             </button>
             <button className="font-medium text-slate-300 transition-colors duration-200 hover:text-white">
               About us
@@ -249,7 +282,7 @@ export default function GParticle() {
         className="fixed bottom-8 right-8 z-50"
       >
         <button className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-2xl">
-          <span className="text-sm text-primary">▶</span>
+          <span className="text-sm text-primary">{'>'}</span>
           <span className="text-sm font-medium">Playground</span>
         </button>
       </motion.div>
