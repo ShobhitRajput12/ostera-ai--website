@@ -3,7 +3,7 @@ import OsteraLogo from './OsteraLogo';
 
 export default function Footer() {
   return (
-    <footer className="bg-background pt-20 pb-10 border-t border-gray-800 relative z-10">
+    <footer className="bg-transparent backdrop-blur-md pt-20 pb-10 border-t border-gray-800/50 relative z-10">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1">

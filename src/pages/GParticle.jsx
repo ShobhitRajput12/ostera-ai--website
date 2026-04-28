@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { motion, useMotionValue, useSpring } from 'framer-motion';
 
-const BASE_PARTICLE_COUNT = 3000; // slightly denser for that beautiful tunnel look
+const BASE_PARTICLE_COUNT = 3000;
 
 function createTunnelParticle(canvas, index, total) {
   const progress = index / total;
@@ -44,8 +44,8 @@ function createTunnelParticle(canvas, index, total) {
       Math.random() < 0.1
         ? '255, 255, 255'
         : Math.random() < 0.55
-          ? '96, 232, 255'
-          : '0, 210, 255',
+          ? '0, 238, 255'
+          : '138, 43, 226',
     twinkleSeed,
     twinkleSpeed: 0.5 + Math.random() * 1.6,
     returnStrength: 0.032 + Math.random() * 0.018,
@@ -78,6 +78,12 @@ export default function GParticle() {
   const glowY = useSpring(pointerY, { stiffness: 90, damping: 22, mass: 0.5 });
 
   useEffect(() => {
+    // Inject Inter Font
+    const link = document.createElement('link');
+    link.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap';
+    link.rel = 'stylesheet';
+    document.head.appendChild(link);
+
     const canvas = canvasRef.current;
     if (!canvas) return;
 
@@ -110,8 +116,6 @@ export default function GParticle() {
       const width = window.innerWidth;
       const height = window.innerHeight;
 
-      // Canvas base background is removed to let the original UI's CSS background and Framer Motion mouse glow shine through!
-
       const vortexGlow = ctx.createRadialGradient(
         width * 0.58,
         height * 0.46,
@@ -120,25 +124,11 @@ export default function GParticle() {
         height * 0.46,
         width * 0.42
       );
-      vortexGlow.addColorStop(0, 'rgba(0, 238, 255, 0.16)');
-      vortexGlow.addColorStop(0.34, 'rgba(0, 140, 255, 0.14)');
-      vortexGlow.addColorStop(0.72, 'rgba(104, 36, 126, 0.10)');
+      vortexGlow.addColorStop(0, 'rgba(0, 238, 255, 0.12)');
+      vortexGlow.addColorStop(0.34, 'rgba(138, 43, 226, 0.08)');
+      vortexGlow.addColorStop(0.72, 'rgba(0, 210, 255, 0.05)');
       vortexGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
       ctx.fillStyle = vortexGlow;
-      ctx.fillRect(0, 0, width, height);
-
-      const rightGlow = ctx.createRadialGradient(
-        width * 0.88,
-        height * 0.74,
-        0,
-        width * 0.88,
-        height * 0.74,
-        width * 0.18
-      );
-      rightGlow.addColorStop(0, 'rgba(0, 229, 255, 0.14)');
-      rightGlow.addColorStop(0.48, 'rgba(0, 124, 255, 0.09)');
-      rightGlow.addColorStop(1, 'rgba(0, 0, 0, 0)');
-      ctx.fillStyle = rightGlow;
       ctx.fillRect(0, 0, width, height);
     };
 
@@ -198,19 +188,22 @@ export default function GParticle() {
       window.removeEventListener('resize', resize);
       window.removeEventListener('pointermove', handlePointerMove);
       cancelAnimationFrame(animationFrameId);
+      if (document.head.contains(link)) document.head.removeChild(link);
     };
   }, [pointerX, pointerY]);
 
   return (
-    <div className="relative flex min-h-screen flex-col overflow-hidden bg-[#040611] text-white selection:bg-primary/30">
-      <motion.div
-        className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_25%,rgba(255,255,255,0.08),transparent_18%),radial-gradient(circle_at_78%_68%,rgba(0,238,255,0.08),transparent_12%),radial-gradient(circle_at_70%_38%,rgba(123,92,255,0.12),transparent_20%)]"
-        animate={{ opacity: [0.6, 0.9, 0.7] }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-      />
+    <div 
+      className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#020617] text-white selection:bg-cyan-500/30"
+      style={{ fontFamily: "'Inter', sans-serif" }}
+    >
+      <canvas ref={canvasRef} className="fixed inset-0 z-0 h-full w-full pointer-events-none" />
+      
+      <div className="fixed inset-0 z-0 pointer-events-none bg-[radial-gradient(circle_at_center,transparent_0%,rgba(2,6,23,0.6)_100%)]" />
 
+      {/* Floating Mouse Glow */}
       <motion.div
-        className="pointer-events-none absolute z-0 h-[32rem] w-[32rem] rounded-full bg-[radial-gradient(circle,rgba(0,238,255,0.16)_0%,rgba(0,132,255,0.08)_28%,transparent_68%)] blur-3xl"
+        className="pointer-events-none fixed z-0 h-[40rem] w-[40rem] rounded-full bg-[radial-gradient(circle,rgba(0,238,255,0.1)_0%,rgba(138,43,226,0.05)_30%,transparent_70%)] blur-3xl mix-blend-screen"
         style={{
           left: glowX,
           top: glowY,
@@ -219,70 +212,208 @@ export default function GParticle() {
         }}
       />
 
-      <canvas ref={canvasRef} className="absolute inset-0 z-0 h-full w-full pointer-events-none" />
-
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_center,transparent_32%,rgba(3,6,17,0.25)_60%,rgba(3,6,17,0.84)_100%)]" />
-
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center px-6">
+      {/* HERO SECTION */}
+      <section className="relative z-10 flex min-h-screen flex-col items-center justify-center px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
-          className="mt-12 flex w-full max-w-[800px] flex-col items-center text-center"
+          transition={{ duration: 1, ease: 'easeOut' }}
+          className="flex w-full max-w-[900px] flex-col items-center text-center"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.1, duration: 0.5, ease: 'easeOut' }}
-            className="mb-8 flex cursor-pointer items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-medium text-slate-300 shadow-sm backdrop-blur-md transition-colors hover:border-primary/40"
+            transition={{ delay: 0.1, duration: 0.5 }}
+            className="mb-8 flex cursor-pointer items-center gap-2 rounded-full border border-cyan-500/20 bg-cyan-500/5 px-5 py-2 text-sm font-medium text-cyan-200 shadow-[0_0_15px_rgba(0,238,255,0.1)] backdrop-blur-md transition-all hover:border-cyan-400/40 hover:bg-cyan-500/10"
           >
-            NEW RESEARCH <span className="text-primary">{'->'}</span>
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cyan-400 opacity-75"></span>
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-cyan-500"></span>
+            </span>
+            gparticle system online
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7, ease: 'easeOut' }}
-            className="mb-8 text-5xl font-medium tracking-tight text-white sm:text-6xl md:text-7xl"
+            transition={{ delay: 0.2, duration: 0.8, ease: 'easeOut' }}
+            className="mb-6 text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-white via-slate-200 to-slate-500 sm:text-6xl md:text-[80px] md:leading-[1.1]"
           >
-            Making every device <br className="hidden md:block" /> an AI-native device.
+            Visualizing Intelligence <br className="hidden md:block" /> Through Particles.
           </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.7, ease: 'easeOut' }}
+            transition={{ delay: 0.3, duration: 0.8, ease: 'easeOut' }}
             className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-300 md:text-xl"
           >
-            We are building the fundamental infrastructure to run complex models and advanced AI
-            workloads seamlessly across everyday computing environments.
+            gparticle transforms complex data into interactive 3D particle systems. Experience real-time neural renderings and volumetric data flow.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7, ease: 'easeOut' }}
+            transition={{ delay: 0.4, duration: 0.8, ease: 'easeOut' }}
             className="flex flex-col items-center justify-center gap-6 sm:flex-row"
           >
-            <button className="flex items-center gap-2 rounded-full bg-gradient-to-r from-primary to-secondary px-8 py-3.5 font-medium text-white shadow-[0_4px_20px_rgba(59,130,246,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_8px_30px_rgba(59,130,246,0.25)]">
-              Read our research
-              <span>{'->'}</span>
+            <button className="group relative flex items-center gap-2 rounded-full bg-white px-8 py-4 text-sm font-semibold text-[#020617] transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(0,238,255,0.4)]">
+              Explore Visualization
+              <motion.span
+                className="inline-block"
+                animate={{ x: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+              >
+                →
+              </motion.span>
             </button>
-            <button className="font-medium text-slate-300 transition-colors duration-200 hover:text-white">
-              About us
+            <button className="text-sm font-medium text-slate-300 transition-colors duration-200 hover:text-white">
+              Learn more
             </button>
           </motion.div>
         </motion.div>
-      </div>
 
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-400"
+        >
+          <span className="text-xs uppercase tracking-widest">Scroll</span>
+          <div className="h-10 w-[1px] bg-gradient-to-b from-slate-400 to-transparent" />
+        </motion.div>
+      </section>
+
+      {/* FEATURES SECTION */}
+      <section className="relative z-10 min-h-screen w-full px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-20 text-center">
+            <h2 className="mb-4 text-3xl font-bold tracking-tight text-white md:text-5xl">
+              Powering the next generation of <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-violet-500">
+                spatial computing.
+              </span>
+            </h2>
+            <p className="mx-auto max-w-2xl text-slate-400">
+              Our advanced renderer bridges the gap between massive datasets and human comprehension through beautifully optimized volumetric graphics.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+            {[
+              {
+                title: 'Real-time rendering',
+                desc: '60fps volumetric particle flows optimized for WebGL and Canvas API.',
+                icon: '⚡',
+                color: 'from-cyan-500/20 to-transparent border-cyan-500/20',
+              },
+              {
+                title: 'AI-driven visualization',
+                desc: 'Latent space representations mapped directly to physics-based nodes.',
+                icon: '🧠',
+                color: 'from-violet-500/20 to-transparent border-violet-500/20',
+              },
+              {
+                title: 'High-performance',
+                desc: 'Capable of displaying millions of particles with minimal CPU overhead.',
+                icon: '🚀',
+                color: 'from-blue-500/20 to-transparent border-blue-500/20',
+              },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-100px' }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                className={`group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-b ${feature.color} bg-[#020617]/50 p-8 backdrop-blur-xl transition-all hover:bg-[#020617]/80 hover:border-white/10`}
+              >
+                <div className="mb-8 text-4xl">{feature.icon}</div>
+                <div>
+                  <h3 className="mb-3 text-xl font-semibold text-white">{feature.title}</h3>
+                  <p className="text-slate-400 leading-relaxed">{feature.desc}</p>
+                </div>
+                <div className="absolute inset-0 z-[-1] bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* DEMO / VISUALIZATION SECTION */}
+      <section className="relative z-10 flex min-h-screen w-full flex-col items-center justify-center px-6 py-24">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1 }}
+          className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-2 backdrop-blur-sm shadow-[0_0_50px_rgba(0,0,0,0.5)]"
+        >
+          <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-black/40 shadow-inner">
+            {/* Faux Interface inside the Demo */}
+            <div className="absolute inset-0 z-10 flex flex-col justify-between p-6 pointer-events-none">
+              <div className="flex justify-between items-start">
+                <div className="flex gap-2">
+                  <div className="h-3 w-3 rounded-full bg-red-500/80" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-500/80" />
+                  <div className="h-3 w-3 rounded-full bg-green-500/80" />
+                </div>
+                <div className="flex flex-col items-end text-xs font-mono text-cyan-400/80">
+                  <span>FPS: 60.0</span>
+                  <span>PTCL: 3,450,211</span>
+                  <span>MEM: 24MB</span>
+                </div>
+              </div>
+              
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-medium text-white/50 uppercase tracking-widest">
+                  Neural Manifold Projection
+                </div>
+                <button className="pointer-events-auto rounded-full border border-white/10 bg-white/10 px-4 py-1 text-xs text-white backdrop-blur-md hover:bg-white/20 transition">
+                  Reset View
+                </button>
+              </div>
+            </div>
+            
+            {/* Transparent background here lets the absolute fixed canvas show through beautifully! */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent opacity-80 pointer-events-none" />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="relative z-10 w-full border-t border-white/5 bg-transparent px-6 py-12 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 md:flex-row">
+          <div className="flex items-center gap-2">
+            <div className="h-6 w-6 rounded-full bg-gradient-to-br from-cyan-400 to-violet-500 shadow-[0_0_10px_rgba(0,238,255,0.5)]" />
+            <span className="text-xl font-bold tracking-tight text-white">gparticle</span>
+          </div>
+          
+          <ul className="flex flex-wrap justify-center gap-8 text-sm text-slate-400">
+            <li className="cursor-pointer hover:text-cyan-400 transition">Product</li>
+            <li className="cursor-pointer hover:text-cyan-400 transition">Research</li>
+            <li className="cursor-pointer hover:text-cyan-400 transition">Documentation</li>
+            <li className="cursor-pointer hover:text-cyan-400 transition">Company</li>
+          </ul>
+
+          <div className="text-sm text-slate-500">
+            © 2026 gparticle systems. All rights reserved.
+          </div>
+        </div>
+      </footer>
+
+      {/* Floating Playground Button */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.6, ease: 'easeOut' }}
+        transition={{ delay: 1, duration: 0.6 }}
         className="fixed bottom-8 right-8 z-50"
       >
-        <button className="flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-white shadow-xl backdrop-blur-md transition-all duration-300 hover:scale-105 hover:border-primary/40 hover:shadow-2xl">
-          <span className="text-sm text-primary">{'>'}</span>
+        <button className="group flex h-14 items-center gap-3 rounded-full border border-white/10 bg-[#020617]/80 px-2 pr-6 text-white shadow-xl backdrop-blur-xl transition-all duration-300 hover:scale-105 hover:border-cyan-500/50 hover:shadow-[0_0_20px_rgba(0,238,255,0.2)]">
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/10 group-hover:bg-cyan-500/20 transition-colors">
+            <span className="text-lg text-cyan-400">✺</span>
+          </div>
           <span className="text-sm font-medium">Playground</span>
         </button>
       </motion.div>

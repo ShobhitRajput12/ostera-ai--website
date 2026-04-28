@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const FRAME_COUNT = 210;
+const FRAME_COUNT = 195;
 
 function currentFrame(index) {
-  const num = String(index).padStart(3, '0');
+  const num = String(index + 40).padStart(3, '0');
   return `/frames/ezgif-frame-${num}.jpg`;
 }
 
