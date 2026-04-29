@@ -91,8 +91,8 @@ export default function BackgroundCanvas() {
   return (
     <div className="fixed inset-0 z-0 pointer-events-none bg-[#050505]">
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />
-      {/* Dark gradient overlay to ensure text on the website is readable */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/88 via-[#030712]/28 to-[#030712]/92 mix-blend-multiply" />
+      {/* Dark gradient overlay to ensure text on the website is readable - opacity reduced to soften lines */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-[#030712]/10 to-[#030712]/40 mix-blend-multiply" />
     </div>
   );
 }

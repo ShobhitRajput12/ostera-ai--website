@@ -11,7 +11,7 @@ export default function Hero() {
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000"></div>
       <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-4000"></div>
 
-      <div className="container mx-auto px-6 relative z-10 flex min-h-screen items-center">
+      <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-10 lg:-mt-24">
         <div className="flex w-full flex-col items-center gap-12 lg:flex-row">
           <div className="w-full lg:w-1/2 text-center lg:text-left">
             <div>
@@ -22,7 +22,7 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-white/10 mb-8"
               >
                 <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium text-gray-300">Introducing Ostera AI 2.0</span>
+                <span className="text-sm font-medium text-gray-300">Introducing Ostera AI </span>
               </motion.div>
 
               <motion.h1
@@ -60,8 +60,14 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen">
-            <Spline scene="https://prod.spline.design/XLRlxGQoAOtuJEef/scene.splinecode" className="w-full h-full" />
+          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center">
+            {/* Using a wider container and scaling it down to trick Spline into not cropping the sides */}
+            <div className="absolute inset-0 w-[140%] h-full -left-[20%] lg:w-[150%] lg:-left-[25%] xl:w-[120%] xl:-left-[10%] flex items-center justify-center">
+              <Spline 
+                scene="https://prod.spline.design/XLRlxGQoAOtuJEef/scene.splinecode" 
+                className="w-full h-full transform scale-75 lg:scale-75 xl:scale-90 origin-center" 
+              />
+            </div>
           </div>
         </div>
       </div>
