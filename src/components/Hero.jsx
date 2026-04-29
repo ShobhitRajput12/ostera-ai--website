@@ -5,7 +5,8 @@ import { ArrowRight, Sparkles } from 'lucide-react';
 
 export default function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+    <section id="home" className="relative flex min-h-screen items-center justify-center overflow-x-clip pt-20">
+
       {/* Background Glows */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob"></div>
       <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000"></div>
@@ -13,7 +14,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-10 lg:-mt-24">
         <div className="flex w-full flex-col items-center gap-12 lg:flex-row">
-          <div className="w-full lg:w-1/2 text-center lg:text-left">
+          <div className="w-full lg:w-1/2 text-center lg:text-left relative z-20">
             <div>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -60,12 +61,14 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center">
-            {/* Using a wider container and scaling it down to trick Spline into not cropping the sides */}
-            <div className="absolute inset-0 w-[140%] h-full -left-[20%] lg:w-[150%] lg:-left-[25%] xl:w-[120%] xl:-left-[10%] flex items-center justify-center">
-              <Spline 
-                scene="https://prod.spline.design/XLRlxGQoAOtuJEef/scene.splinecode" 
-                className="w-full h-full transform scale-75 lg:scale-75 xl:scale-90 origin-center" 
+          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center z-10">
+            <div
+              className="absolute inset-0 w-[300%] h-full -left-[100%] flex items-center justify-center"
+              style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)' }}
+            >
+              <Spline
+                scene="https://prod.spline.design/XLRlxGQoAOtuJEef/scene.splinecode"
+                className="w-full h-full"
               />
             </div>
           </div>

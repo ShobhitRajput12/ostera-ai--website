@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function CTA() {
   return (
-    <section className="py-24 relative z-10 overflow-hidden">
+    <section className="pt-24 pb-12 md:pb-24 relative z-10 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20"></div>
 
       {/* Particles/Stars effect placeholder */}

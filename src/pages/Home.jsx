@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Navbar from '../components/Navbar';
 import BackgroundCanvas from '../components/BackgroundCanvas';
 import Hero from '../components/Hero';
@@ -11,21 +11,29 @@ import CTA from '../components/CTA';
 import Footer from '../components/Footer';
 
 export default function Home() {
+  const mainRef = useRef(null);
+
   return (
-    <div className="min-h-screen text-white selection:bg-primary/30 font-body relative">
-      <BackgroundCanvas />
-      
+    <div className="relative min-h-screen overflow-x-clip font-body text-white selection:bg-primary/30">
+    
+    
       <div className="relative z-10">
         <Navbar />
-        <main>
-          <Hero />
-          <Features />
-          <BentoGrid />
-          <HowItWorks />
-          <Testimonials />
-          <Pricing />
-          <CTA />
-        </main>
+        <div ref={mainRef} className="relative">
+          <BackgroundCanvas scrollTargetRef={mainRef} />
+
+          <main className="relative z-10">
+            <Hero />
+            <Features />
+            <BentoGrid />
+            <HowItWorks />
+            <Testimonials />
+            <Pricing />
+            <CTA />
+            {/* Cinematic spacer to reveal the final robot frame before footer */}
+            <div className="h-[90vh] w-full pointer-events-none"></div>
+          </main>
+        </div>
         <Footer />
       </div>
     </div>

@@ -13,6 +13,7 @@
     color: var(--foreground);
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
+    overflow-x: clip;
   }
 }
 

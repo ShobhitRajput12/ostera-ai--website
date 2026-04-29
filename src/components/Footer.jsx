@@ -3,15 +3,15 @@ import OsteraLogo from './OsteraLogo';
 
 export default function Footer() {
   return (
-    <footer className="bg-transparent backdrop-blur-md pt-12 md:pt-16 pb-6 border-t border-gray-800/50 relative z-10">
+    <footer className="relative z-20 border-t border-gray-800/50 bg-[#050505] pt-6 pb-4 md:pt-8">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-8 lg:gap-12 mb-20 md:mb-32">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-6 lg:gap-8 mb-8 md:mb-10">
           <div className="col-span-2 md:col-span-4 lg:col-span-3 lg:pr-8">
             <div className="mb-8">
               <OsteraLogo
-                className="gap-3"
-                markClassName="h-11 w-11"
-                textClassName="text-xl tracking-[0.14em]"
+                className="gap-2"
+                markClassName="h-8 w-8"
+                textClassName="text-lg tracking-[0.14em]"
               />
             </div>
             <p className="text-gray-400 text-sm mb-8 leading-relaxed">
@@ -30,9 +30,9 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-2">
-            <h4 className="text-white font-semibold mb-6">Product</h4>
-            <ul className="space-y-5 text-sm text-gray-400">
+          <div className="col-span-1 lg:col-span-2 lg:col-start-6">
+            <h4 className="text-white font-semibold mb-4">Product</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Integrations</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
@@ -42,8 +42,8 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1 lg:col-span-2 lg:col-start-9">
-            <h4 className="text-white font-semibold mb-6">Company</h4>
-            <ul className="space-y-5 text-sm text-gray-400">
+            <h4 className="text-white font-semibold mb-4">Company</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
@@ -53,8 +53,8 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1 lg:col-span-2">
-            <h4 className="text-white font-semibold mb-6">Legal</h4>
-            <ul className="space-y-5 text-sm text-gray-400">
+            <h4 className="text-white font-semibold mb-4">Legal</h4>
+            <ul className="space-y-2 text-sm text-gray-400">
               <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Cookie Policy</a></li>

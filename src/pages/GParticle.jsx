@@ -194,7 +194,7 @@ export default function GParticle() {
 
   return (
     <div 
-      className="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-[#020617] text-white selection:bg-cyan-500/30"
+      className="relative flex min-h-screen w-full flex-col overflow-x-clip bg-[#020617] text-white selection:bg-cyan-500/30"
       style={{ fontFamily: "'Inter', sans-serif" }}
     >
       <canvas ref={canvasRef} className="fixed inset-0 z-0 h-full w-full pointer-events-none" />
