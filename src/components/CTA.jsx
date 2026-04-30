@@ -4,14 +4,8 @@ import { motion } from 'framer-motion';
 export default function CTA() {
   return (
     <section className="pt-24 pb-12 md:pb-24 relative z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20"></div>
-
-      {/* Particles/Stars effect placeholder */}
-      <div className="absolute inset-0" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.1) 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
-
       <div className="container mx-auto px-6 relative z-10">
         <div className="glass-card max-w-5xl mx-auto rounded-3xl p-12 md:p-20 text-center border-white/10 relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-1/2 bg-primary/20 filter blur-[100px] rounded-full"></div>
 
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
