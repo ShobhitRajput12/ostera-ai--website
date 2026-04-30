@@ -25,8 +25,10 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300',
-        scrolled ? 'glass py-3 border-white/10' : 'bg-transparent py-5'
+        'fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300',
+        scrolled 
+          ? 'glass py-2 border-white/10' 
+          : 'bg-white/[0.12] backdrop-blur-2xl py-3.5 border-transparent'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6">

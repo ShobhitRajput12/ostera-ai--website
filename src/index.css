@@ -19,16 +19,14 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+    @apply bg-white/[0.12] backdrop-blur-2xl border border-white/10 shadow-xl;
   }
 
   .glass-card {
-    background-color: #1a1e2b;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    @apply bg-white/[0.12] backdrop-blur-2xl border border-white/[0.12] shadow-2xl;
     border-radius: 1.5rem;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
   }
 
   .glass-card::before {
@@ -44,7 +42,7 @@
     pointer-events: none;
   }
 
-  .glass-card > * {
+  .glass-card>* {
     position: relative;
     z-index: 1;
   }
