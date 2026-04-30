@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 
-const FRAME_COUNT = 195;
+const FRAME_COUNT = 240;
 
 function currentFrame(index) {
-  const num = String(index + 40).padStart(3, '0');
-  return `/frames/ezgif-frame-${num}.jpg`;
+  const num = String(index).padStart(3, '0');
+  return `/frames/ezgif-frame-${num}.png`;
 }
 
 function BeatLayer({ beat, smoothProgress, isFirst }) {
@@ -93,6 +93,15 @@ export default function BrainScroll() {
     const context = canvas.getContext('2d');
     let animationFrameId;
 
+    const handleResize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
     const render = () => {
       const index = Math.min(Math.max(Math.floor(frameIndex.get()), 0), FRAME_COUNT - 1);
       let img = images.length > 0 ? images[index] : null;
@@ -107,19 +116,22 @@ export default function BrainScroll() {
       }
 
       if (img) {
-        // Handle responsive canvas size dynamically
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
+
+        // Use high quality smoothing
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
 
         // Draw image with object-fit: contain logic to maintain aspect ratio
-        const hRatio = canvas.width / img.width;
-        const vRatio = canvas.height / img.height;
+        const hRatio = canvasWidth / img.width;
+        const vRatio = canvasHeight / img.height;
         const ratio = Math.min(hRatio, vRatio);
 
-        const centerShiftX = (canvas.width - img.width * ratio) / 2;
-        const centerShiftY = (canvas.height - img.height * ratio) / 2;
+        const centerShiftX = (canvasWidth - img.width * ratio) / 2;
+        const centerShiftY = (canvasHeight - img.height * ratio) / 2;
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(
           img, 
           0, 0, img.width, img.height,
@@ -131,7 +143,10 @@ export default function BrainScroll() {
 
     render();
 
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [images, frameIndex]);
 
   const loadingPercentage = Math.round((loaded / FRAME_COUNT) * 100);

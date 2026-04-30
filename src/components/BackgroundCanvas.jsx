@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useScroll, useTransform, useSpring } from 'framer-motion';
 
-const FRAME_COUNT = 195;
+const FRAME_COUNT = 240;
 
 function currentFrame(index) {
-  const num = String(index + 40).padStart(3, '0');
-  return `/frames/ezgif-frame-${num}.jpg`;
+  const num = String(index).padStart(3, '0');
+  return `/frames/ezgif-frame-${num}.png`;
 }
 
 export default function BackgroundCanvas({ scrollTargetRef }) {
@@ -16,7 +16,7 @@ export default function BackgroundCanvas({ scrollTargetRef }) {
   // Preload fallback image
   useEffect(() => {
     const fallback = new Image();
-    fallback.src = '/frames/ezgif-frame-040.jpg';
+    fallback.src = '/frames/ezgif-frame-001.png';
     fallbackImageRef.current = fallback;
   }, []);
 
@@ -57,7 +57,17 @@ export default function BackgroundCanvas({ scrollTargetRef }) {
     const context = canvas.getContext('2d');
     let animationFrameId;
 
+    const handleResize = () => {
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = window.innerWidth * dpr;
+      canvas.height = window.innerHeight * dpr;
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
     const render = () => {
+      const dpr = window.devicePixelRatio || 1;
       const index = Math.min(Math.max(Math.floor(frameIndex.get()), 0), FRAME_COUNT - 1);
       let img = images.length > 0 ? images[index] : null;
 
@@ -71,17 +81,21 @@ export default function BackgroundCanvas({ scrollTargetRef }) {
       }
 
       if (img) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        const canvasWidth = canvas.width;
+        const canvasHeight = canvas.height;
 
-        const hRatio = canvas.width / img.width;
-        const vRatio = canvas.height / img.height;
+        // Use high quality smoothing
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = 'high';
+
+        const hRatio = canvasWidth / img.width;
+        const vRatio = canvasHeight / img.height;
         const ratio = Math.max(hRatio, vRatio);
 
-        const centerShiftX = (canvas.width - img.width * ratio) / 2;
-        const centerShiftY = (canvas.height - img.height * ratio) / 2;
+        const centerShiftX = (canvasWidth - img.width * ratio) / 2;
+        const centerShiftY = (canvasHeight - img.height * ratio) / 2;
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(
           img,
           0, 0, img.width, img.height,
@@ -93,16 +107,17 @@ export default function BackgroundCanvas({ scrollTargetRef }) {
 
     render();
 
-    return () => cancelAnimationFrame(animationFrameId);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
+    };
   }, [images, frameIndex]);
 
   return (
     <div className="absolute inset-0 z-0 pointer-events-none">
       <div className="sticky top-0 h-screen w-full bg-[#050505]">
-        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full opacity-60" />
-        {/* Dark gradient overlay to keep foreground content readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#020617]/40 via-[#030712]/10 to-[#030712]/40 mix-blend-multiply" />
-
+        <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
+        
         {/* Cinematic shadow gradient on the left side to smoothly hide the sharp cut on the robot's arm */}
         <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
         <div className="absolute inset-y-0 right-0 w-[20%] bg-gradient-to-l from-[#050505] to-transparent opacity-80" />
