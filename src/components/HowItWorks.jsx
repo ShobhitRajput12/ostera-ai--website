@@ -40,9 +40,9 @@ export default function HowItWorks() {
 
         <div className="relative max-w-4xl mx-auto">
           {/* Connecting Line (Desktop) */}
-          <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-primary via-secondary to-accent -translate-y-1/2 opacity-30"></div>
+
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
@@ -50,14 +50,13 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="relative flex flex-col items-center text-center"
+                className="glass-card p-8 flex flex-col items-center text-center group hover:border-primary/50 transition-all hover:translate-y-[-5px]"
               >
-                <div className="w-20 h-20 rounded-2xl glass-card flex items-center justify-center mb-6 relative z-10 border-primary/30 group hover:border-primary transition-colors">
-                  <div className="absolute inset-0 bg-primary/20 rounded-2xl blur-xl group-hover:bg-primary/40 transition-colors"></div>
-                  <step.icon className="w-10 h-10 text-white relative z-10" />
+                <div className="w-16 h-16 rounded-xl bg-white/5 flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform">
+                  <step.icon className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-gray-400">{step.description}</p>
+                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>

@@ -7,7 +7,7 @@
     --background: #030712;
     --foreground: #f9fafb;
   }
-  
+
   body {
     background-color: var(--background);
     color: var(--foreground);
@@ -21,9 +21,34 @@
   .glass {
     @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
   }
+
   .glass-card {
-    @apply bg-gray-900/40 backdrop-blur-lg border border-gray-800 rounded-2xl shadow-2xl;
+    background-color: #1a1e2b;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
   }
+
+  .glass-card::before {
+    content: "";
+    position: absolute;
+    top: -25%;
+    right: -25%;
+    width: 90%;
+    height: 90%;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 70%);
+    filter: blur(70px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glass-card > * {
+    position: relative;
+    z-index: 1;
+  }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent;
   }
