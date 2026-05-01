@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Zap, Shield, BarChart3, Globe, Cpu, Layers } from 'lucide-react';
+import { GlowCard } from './ui/spotlight-card';
 
 const features = [
   {
@@ -80,28 +81,31 @@ export default function Features() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="feature-card p-10 group flex flex-col"
-              style={{ '--glow-color': feature.glow }}
+              className="h-full"
             >
-              <div className="feature-card-glow" />
-              
-              <div className="relative z-10">
-                <div className="feature-icon-box group-hover:scale-105 transition-transform duration-500">
-                  <feature.icon size={26} color={feature.color} strokeWidth={1.5} />
-                  <div 
-                    className="absolute inset-0 opacity-10"
-                    style={{ background: feature.color, filter: 'blur(8px)' }}
-                  />
+              <GlowCard 
+                className="h-full p-10 group flex flex-col" 
+                glowColor={index % 2 === 0 ? 'purple' : 'blue'}
+                customSize
+              >
+                <div className="relative z-10">
+                  <div className="feature-icon-box group-hover:scale-105 transition-transform duration-500">
+                    <feature.icon size={26} color={feature.color} strokeWidth={1.5} />
+                    <div 
+                      className="absolute inset-0 opacity-10"
+                      style={{ background: feature.color, filter: 'blur(8px)' }}
+                    />
+                  </div>
+                  
+                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">
+                    {feature.title}
+                  </h3>
+                  
+                  <p className="text-gray-400 leading-relaxed text-base font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    {feature.description}
+                  </p>
                 </div>
-                
-                <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-gray-400 leading-relaxed text-base font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                  {feature.description}
-                </p>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

@@ -8,29 +8,7 @@ function currentFrame(index) {
   return `/frames/ezgif-frame-${num}.png`;
 }
 
-function BeatLayer({ beat, smoothProgress, isFirst }) {
-  const y = useTransform(smoothProgress, beat.range, isFirst ? [0, 0, 0, -100] : [100, 0, 0, -100]);
-  const opacity = useTransform(smoothProgress, beat.range, isFirst ? [1, 1, 1, 0] : [0, 1, 1, 0]);
-
-  return (
-    <motion.div
-      style={{ y, opacity }}
-      className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20 pointer-events-none"
-    >
-      <h2 className="text-6xl md:text-8xl lg:text-[10rem] font-bold font-heading tracking-tight text-white mb-6 drop-shadow-2xl">
-        {beat.title}
-      </h2>
-      <p className="text-xl md:text-3xl text-blue-300 font-light tracking-wide drop-shadow-md max-w-3xl">
-        {beat.subtitle}
-      </p>
-      {beat.cta && (
-        <button className="mt-16 pointer-events-auto px-10 py-5 rounded-full bg-white text-black font-semibold hover:scale-105 transition-transform text-lg shadow-[0_0_40px_rgba(255,255,255,0.4)]">
-          {beat.cta}
-        </button>
-      )}
-    </motion.div>
-  );
-}
+// Component refined to remove storytelling text layers
 
 export default function BrainScroll() {
   const canvasRef = useRef(null);
@@ -151,30 +129,7 @@ export default function BrainScroll() {
 
   const loadingPercentage = Math.round((loaded / FRAME_COUNT) * 100);
 
-  // Animation Beats for the scroll story
-  const beats = [
-    {
-      title: "INTELLIGENCE",
-      subtitle: "Reimagined through artificial cognition",
-      range: [0, 0.1, 0.2, 0.25] // appear, peak, hold, disappear
-    },
-    {
-      title: "NEURAL FLOW",
-      subtitle: "Data moves like thought",
-      range: [0.25, 0.35, 0.45, 0.5]
-    },
-    {
-      title: "SELF EVOLVING",
-      subtitle: "Systems that learn and adapt",
-      range: [0.5, 0.6, 0.7, 0.75]
-    },
-    {
-      title: "OSTERA AI",
-      subtitle: "The future of intelligence is here",
-      cta: "Explore Platform",
-      range: [0.75, 0.85, 0.95, 1]
-    }
-  ];
+  // Storytelling beats removed as requested
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-[#050505]">
@@ -204,10 +159,7 @@ export default function BrainScroll() {
         {/* Overlay Dark Gradient for text readability and cinematic feel */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80 z-10 pointer-events-none" />
 
-        {/* Scroll Story Text Layers */}
-        {beats.map((beat, i) => (
-          <BeatLayer key={i} beat={beat} smoothProgress={smoothProgress} isFirst={i === 0} />
-        ))}
+        {/* Storytelling text layers removed */}
 
         {/* Scroll Down Indicator */}
         <motion.div

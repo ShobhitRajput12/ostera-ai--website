@@ -1,46 +1,52 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GlowCard } from './ui/spotlight-card';
 
 export default function CTA() {
   return (
     <section className="pt-24 pb-12 md:pb-24 relative z-10 overflow-hidden">
       <div className="container mx-auto px-6 relative z-10">
-        <div className="glass-card max-w-5xl mx-auto rounded-3xl p-12 md:p-20 text-center border-white/10 relative overflow-hidden">
+        <GlowCard 
+          className="max-w-5xl mx-auto rounded-3xl p-12 md:p-20 text-center relative overflow-hidden"
+          glowColor="purple"
+          customSize
+        >
+          <div className="relative z-10">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight text-white"
+            >
+              Ready to build the future?
+            </motion.h2>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight"
-          >
-            Ready to build the future?
-          </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
+            >
+              Join thousands of developers and companies building the next generation of AI-powered applications.
+            </motion.p>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
-          >
-            Join thousands of developers and companies building the next generation of AI-powered applications.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(59,130,246,0.3)]">
-              Start Building Free
-            </button>
-            <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium transition-colors">
-              Talk to Sales
-            </button>
-          </motion.div>
-        </div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(59,130,246,0.3)]">
+                Start Building Free
+              </button>
+              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium transition-colors">
+                Talk to Sales
+              </button>
+            </motion.div>
+          </div>
+        </GlowCard>
       </div>
     </section>
   );

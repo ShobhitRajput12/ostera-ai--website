@@ -7,11 +7,6 @@ export default function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center overflow-x-clip pt-20">
 
-      {/* Background Glows */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob"></div>
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-secondary/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-2000"></div>
-      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 w-full max-w-lg h-96 bg-accent/20 rounded-full mix-blend-screen filter blur-[128px] animate-blob animation-delay-4000"></div>
-
       <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-10 lg:-mt-24">
         <div className="flex w-full flex-col items-center gap-12 lg:flex-row">
           <div className="w-full lg:w-1/2 text-center lg:text-left relative z-20">

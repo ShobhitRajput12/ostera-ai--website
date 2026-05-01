@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import OsteraLogo from './OsteraLogo';
+import ThemeToggle from './ui/ThemeToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -28,13 +29,13 @@ export default function Navbar() {
         'fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300',
         scrolled
           ? 'glass py-2 border-white/10'
-          : 'bg-white/[0.12] backdrop-blur-[120px] py-3.5 border-transparent'
+          : 'bg-[#0f0a19]/40 backdrop-blur-[80px] py-3.5 border-transparent'
       )}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
         <OsteraLogo
           className="gap-2.5"
-          markClassName="h-9 w-9"
+          markClassName="h-12 w-auto sm:h-14"
           textClassName="text-lg tracking-[0.12em] sm:text-xl"
         />
 
@@ -59,6 +60,8 @@ export default function Navbar() {
           >
             GPARTICLE
           </a>
+          
+          <ThemeToggle />
         </div>
 
         <button
@@ -97,6 +100,10 @@ export default function Navbar() {
           >
             GPARTICLE
           </a>
+
+          <div className="flex justify-center mt-2">
+            <ThemeToggle />
+          </div>
         </motion.div>
       )}
     </motion.nav>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { GlowCard } from './ui/spotlight-card';
 
 const plans = [
   {
@@ -82,50 +83,56 @@ export default function Pricing() {
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
               className={cn(
-                "feature-card p-10 flex flex-col relative",
-                plan.popular ? "border-primary/40 shadow-[0_0_40px_rgba(59,130,246,0.15)] scale-105 z-10" : "border-white/5"
+                "h-full flex flex-col relative",
+                plan.popular ? "scale-105 z-10" : ""
               )}
-              style={{ '--glow-color': plan.glow }}
             >
-              <div className="feature-card-glow" />
-              
-              <div className="relative z-10 flex flex-col h-full">
-                {plan.popular && (
-                  <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
-                    Most Popular
-                  </div>
+              <GlowCard 
+                className={cn(
+                  "h-full p-10 flex flex-col relative",
+                  plan.popular ? "!border-primary/40 shadow-[0_0_40px_rgba(59,130,246,0.15)]" : ""
                 )}
-                
-                <h3 className="text-3xl font-bold mb-2 text-white tracking-tight">{plan.name}</h3>
-                <p className="text-gray-400 text-base mb-8 min-h-[48px] opacity-80">{plan.description}</p>
-                
-                <div className="mb-8">
-                  <span className="text-5xl font-bold text-white tracking-tight">
-                    ${isYearly ? plan.priceYearly : plan.priceMonthly}
-                  </span>
-                  <span className="text-gray-400 text-lg ml-1">/mo</span>
-                </div>
-
-                <button className={cn(
-                  "w-full py-4 rounded-xl font-bold transition-all mb-10 tracking-wide",
-                  plan.popular 
-                    ? "bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]" 
-                    : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
-                )}>
-                  Get Started
-                </button>
-
-                <div className="flex flex-col gap-4 mt-auto">
-                  {plan.features.map(feature => (
-                    <div key={feature} className="flex items-center gap-3">
-                      <div className="p-0.5 rounded-full bg-primary/20">
-                        <Check className="w-4 h-4 text-primary shrink-0" />
-                      </div>
-                      <span className="text-sm text-gray-300 font-medium">{feature}</span>
+                glowColor={index === 1 || index === 2 ? 'purple' : 'blue'}
+                customSize
+              >
+                <div className="relative z-10 flex flex-col h-full">
+                  {plan.popular && (
+                    <div className="absolute -top-14 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase">
+                      Most Popular
                     </div>
-                  ))}
+                  )}
+                  
+                  <h3 className="text-3xl font-bold mb-2 text-white tracking-tight">{plan.name}</h3>
+                  <p className="text-gray-400 text-base mb-8 min-h-[48px] opacity-80">{plan.description}</p>
+                  
+                  <div className="mb-8">
+                    <span className="text-5xl font-bold text-white tracking-tight">
+                      ${isYearly ? plan.priceYearly : plan.priceMonthly}
+                    </span>
+                    <span className="text-gray-400 text-lg ml-1">/mo</span>
+                  </div>
+
+                  <button className={cn(
+                    "w-full py-4 rounded-xl font-bold transition-all mb-10 tracking-wide",
+                    plan.popular 
+                      ? "bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]" 
+                      : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
+                  )}>
+                    Get Started
+                  </button>
+
+                  <div className="flex flex-col gap-4 mt-auto">
+                    {plan.features.map(feature => (
+                      <div key={feature} className="flex items-center gap-3">
+                        <div className="p-0.5 rounded-full bg-primary/20">
+                          <Check className="w-4 h-4 text-primary shrink-0" />
+                        </div>
+                        <span className="text-sm text-gray-300 font-medium">{feature}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

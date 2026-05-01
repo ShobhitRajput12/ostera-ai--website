@@ -4,8 +4,17 @@
 
 @layer base {
   :root {
+    --background: #ffffff;
+    --foreground: #030712;
+    --card-bg: #f3f4f6;
+    --border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .dark {
     --background: #030712;
     --foreground: #f9fafb;
+    --card-bg: #111827;
+    --border-color: rgba(255, 255, 255, 0.1);
   }
 
   body {
@@ -14,18 +23,19 @@
     font-family: 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
     overflow-x: clip;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
 @layer utilities {
   .glass {
-    /* Extreme 120px blur for premium clarity and glass feel */
-    @apply bg-white/[0.12] backdrop-blur-[120px] border border-white/10 shadow-xl;
+    /* Premium 80px blur for navigation and floating elements */
+    @apply bg-[#0f0a19]/40 backdrop-blur-[80px] border border-white/10 shadow-xl;
   }
 
   .glass-card {
-    /* Premium dark glassmorphism */
-    @apply bg-[#333333]/50 backdrop-blur-[40px] border border-white/10 shadow-2xl;
+    /* Optimized 100px blur for content cards with purple tint */
+    @apply bg-[#0f0a19]/40 backdrop-blur-[100px] border border-white/10 shadow-2xl;
     border-radius: 2rem;
     position: relative;
     overflow: hidden;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { GlowCard } from './ui/spotlight-card';
 
 const testimonials = [
   {
@@ -49,30 +50,33 @@ export default function Testimonials() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="feature-card p-10 flex flex-col group relative"
-              style={{ '--glow-color': testimonial.glow }}
+              className="h-full"
             >
-              <div className="feature-card-glow opacity-30" />
+              <GlowCard 
+                className="h-full p-10 flex flex-col group relative" 
+                glowColor={index % 2 === 0 ? 'purple' : 'blue'}
+                customSize
+              >
+                <div className="relative z-10 h-full flex flex-col">
+                  <div className="flex text-yellow-500/80 mb-8">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
 
-              <div className="relative z-10 h-full flex flex-col">
-                <div className="flex text-yellow-500/80 mb-8">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
+                  <p className="text-lg text-gray-300 mb-10 italic flex-grow leading-relaxed font-medium">"{testimonial.quote}"</p>
 
-                <p className="text-lg text-gray-300 mb-10 italic flex-grow leading-relaxed font-medium">"{testimonial.quote}"</p>
-
-                <div className="flex items-center gap-4 mt-auto pt-6 border-t border-white/5">
-                  <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-300" />
-                  <div>
-                    <h4 className="font-bold text-white text-lg tracking-tight">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-500 font-medium">{testimonial.role}</p>
+                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-white/5">
+                    <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-300" />
+                    <div>
+                      <h4 className="font-bold text-white text-lg tracking-tight">{testimonial.name}</h4>
+                      <p className="text-sm text-gray-500 font-medium">{testimonial.role}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

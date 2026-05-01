@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Database, Cpu, Rocket } from 'lucide-react';
+import { GlowCard } from './ui/spotlight-card';
 
 const steps = [
   {
@@ -53,25 +54,28 @@ export default function HowItWorks() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
-                className="feature-card p-10 flex flex-col items-center text-center group"
-                style={{ '--glow-color': step.glow }}
+                className="h-full"
               >
-                <div className="feature-card-glow" />
+                <GlowCard 
+                  className="h-full p-10 flex flex-col items-center text-center group" 
+                  glowColor={index === 1 ? 'purple' : 'blue'}
+                  customSize
+                >
+                  <div className="relative z-10">
+                    <div className="feature-icon-box mx-auto group-hover:scale-110 transition-transform duration-500">
+                      <step.icon size={24} color={step.color} strokeWidth={1.5} />
+                      <div
+                        className="absolute inset-0 opacity-10"
+                        style={{ background: step.color, filter: 'blur(8px)' }}
+                      />
+                    </div>
 
-                <div className="relative z-10">
-                  <div className="feature-icon-box mx-auto group-hover:scale-110 transition-transform duration-500">
-                    <step.icon size={24} color={step.color} strokeWidth={1.5} />
-                    <div
-                      className="absolute inset-0 opacity-10"
-                      style={{ background: step.color, filter: 'blur(8px)' }}
-                    />
+                    <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{step.title}</h3>
+                    <p className="text-gray-400 text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                      {step.description}
+                    </p>
                   </div>
-
-                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{step.title}</h3>
-                  <p className="text-gray-400 text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
-                    {step.description}
-                  </p>
-                </div>
+                </GlowCard>
               </motion.div>
             ))}
           </div>

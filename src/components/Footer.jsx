@@ -3,14 +3,14 @@ import OsteraLogo from './OsteraLogo';
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 border-t border-gray-800/50 bg-[#050505] pt-6 pb-4 md:pt-8">
+    <footer className="relative z-20 border-t border-gray-800/50 bg-transparent pt-6 pb-4 md:pt-8">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-6 lg:gap-8 mb-8 md:mb-10">
           <div className="col-span-2 md:col-span-4 lg:col-span-3 lg:pr-8">
             <div className="mb-8">
               <OsteraLogo
                 className="gap-2"
-                markClassName="h-8 w-8"
+                markClassName="h-11 w-auto sm:h-12"
                 textClassName="text-lg tracking-[0.14em]"
               />
             </div>
