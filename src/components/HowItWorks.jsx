@@ -7,29 +7,35 @@ const steps = [
     title: '1. Input Data',
     description: 'Connect your existing data sources or upload files securely.',
     icon: Database,
+    color: '#3b82f6',
+    glow: 'rgba(59, 130, 246, 0.12)',
   },
   {
     title: '2. Process with AI',
     description: 'Our proprietary models analyze and extract valuable insights.',
     icon: Cpu,
+    color: '#8b5cf6',
+    glow: 'rgba(139, 92, 246, 0.12)',
   },
   {
     title: '3. Output & Action',
     description: 'Get actionable results integrated directly into your workflow.',
     icon: Rocket,
+    color: '#06b6d4',
+    glow: 'rgba(6, 182, 212, 0.12)',
   },
 ];
 
 export default function HowItWorks() {
   return (
-    <section className="py-24 relative z-10 bg-gray-900/20">
+    <section className="py-24 relative z-10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-20 max-w-2xl mx-auto">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
           >
             How it works
           </motion.h2>
@@ -38,25 +44,34 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div className="relative max-w-4xl mx-auto">
-          {/* Connecting Line (Desktop) */}
-
-          
+        <div className="relative max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
             {steps.map((step, index) => (
               <motion.div
                 key={step.title}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                className="glass-card p-8 flex flex-col items-center text-center group hover:border-primary/50 transition-all hover:translate-y-[-5px]"
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+                className="feature-card p-10 flex flex-col items-center text-center group"
+                style={{ '--glow-color': step.glow }}
               >
-                <div className="w-16 h-16 rounded-xl bg-white/5 flex items-center justify-center mb-6 relative z-10 group-hover:scale-110 transition-transform">
-                  <step.icon className="w-8 h-8 text-white" />
+                <div className="feature-card-glow" />
+
+                <div className="relative z-10">
+                  <div className="feature-icon-box mx-auto group-hover:scale-110 transition-transform duration-500">
+                    <step.icon size={24} color={step.color} strokeWidth={1.5} />
+                    <div
+                      className="absolute inset-0 opacity-10"
+                      style={{ background: step.color, filter: 'blur(8px)' }}
+                    />
+                  </div>
+
+                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{step.title}</h3>
+                  <p className="text-gray-400 text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    {step.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed">{step.description}</p>
               </motion.div>
             ))}
           </div>

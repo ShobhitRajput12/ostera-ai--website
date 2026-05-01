@@ -19,27 +19,52 @@
 
 @layer utilities {
   .glass {
-    @apply bg-white/[0.12] backdrop-blur-2xl border border-white/10 shadow-xl;
+    /* Extreme 120px blur for premium clarity and glass feel */
+    @apply bg-white/[0.12] backdrop-blur-[120px] border border-white/10 shadow-xl;
   }
 
   .glass-card {
-    @apply bg-white/[0.12] backdrop-blur-2xl border border-white/[0.12] shadow-2xl;
-    border-radius: 1.5rem;
+    /* Premium dark glassmorphism */
+    @apply bg-[#333333]/50 backdrop-blur-[40px] border border-white/10 shadow-2xl;
+    border-radius: 2rem;
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
   }
 
-  .glass-card::before {
-    content: "";
+  .feature-card {
+    @apply relative overflow-hidden bg-[#2a2a2a] border border-white/[0.08] shadow-2xl;
+    border-radius: 2.5rem;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card:hover {
+    @apply border-white/20 transform -translate-y-2;
+    background-color: #353535;
+  }
+
+  .feature-icon-box {
+    @apply w-14 h-14 rounded-2xl flex items-center justify-center relative overflow-hidden mb-10;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .feature-card-glow {
     position: absolute;
-    top: -25%;
-    right: -25%;
-    width: 90%;
-    height: 90%;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.22), transparent 70%);
-    filter: blur(70px);
-    z-index: 0;
+    top: -40px;
+    right: -40px;
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, var(--glow-color, rgba(59, 130, 246, 0.12)) 0%, transparent 70%);
+    filter: blur(60px);
+    opacity: 0.4;
     pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .feature-card:hover .feature-card-glow {
+    opacity: 0.7;
   }
 
   .glass-card>* {

@@ -11,9 +11,9 @@ function currentFrame(index) {
 function BeatLayer({ beat, smoothProgress, isFirst }) {
   const y = useTransform(smoothProgress, beat.range, isFirst ? [0, 0, 0, -100] : [100, 0, 0, -100]);
   const opacity = useTransform(smoothProgress, beat.range, isFirst ? [1, 1, 1, 0] : [0, 1, 1, 0]);
-  
+
   return (
-    <motion.div 
+    <motion.div
       style={{ y, opacity }}
       className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20 pointer-events-none"
     >
@@ -89,7 +89,7 @@ export default function BrainScroll() {
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    
+
     const context = canvas.getContext('2d');
     let animationFrameId;
 
@@ -133,7 +133,7 @@ export default function BrainScroll() {
 
         context.clearRect(0, 0, canvasWidth, canvasHeight);
         context.drawImage(
-          img, 
+          img,
           0, 0, img.width, img.height,
           centerShiftX, centerShiftY, img.width * ratio, img.height * ratio
         );
@@ -180,15 +180,15 @@ export default function BrainScroll() {
     <div ref={containerRef} className="relative h-[400vh] bg-[#050505]">
       {loaded < FRAME_COUNT && (
         <div className="fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center text-white font-heading">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="flex flex-col items-center"
           >
             <h2 className="text-2xl tracking-[0.3em] mb-8 text-primary font-bold">INITIALIZING CORE</h2>
             <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden relative">
-              <div 
-                className="absolute top-0 left-0 h-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300" 
+              <div
+                className="absolute top-0 left-0 h-full bg-blue-500 shadow-[0_0_15px_rgba(59,130,246,0.5)] transition-all duration-300"
                 style={{ width: `${loadingPercentage}%` }}
               />
             </div>
@@ -200,7 +200,7 @@ export default function BrainScroll() {
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#050505]">
         {/* Canvas for image sequence */}
         <canvas ref={canvasRef} className="absolute inset-0 w-full h-full z-0" />
-        
+
         {/* Overlay Dark Gradient for text readability and cinematic feel */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#050505]/80 via-transparent to-[#050505]/80 z-10 pointer-events-none" />
 
@@ -208,19 +208,19 @@ export default function BrainScroll() {
         {beats.map((beat, i) => (
           <BeatLayer key={i} beat={beat} smoothProgress={smoothProgress} isFirst={i === 0} />
         ))}
-        
+
         {/* Scroll Down Indicator */}
-        <motion.div 
+        <motion.div
           style={{ opacity: indicatorOpacity }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-white/50 z-20 pointer-events-none"
         >
           <span className="text-xs tracking-[0.2em] uppercase font-mono">Scroll to explore</span>
           <div className="w-px h-24 bg-gray-800 relative overflow-hidden">
-             <motion.div 
-               animate={{ y: [-100, 100] }} 
-               transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-               className="absolute top-0 left-0 w-full h-1/2 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"
-             />
+            <motion.div
+              animate={{ y: [-100, 100] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-blue-500 shadow-[0_0_10px_rgba(59,130,246,0.8)]"
+            />
           </div>
         </motion.div>
       </div>

@@ -2,6 +2,43 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Image as ImageIcon, MessageSquare, Code, Mic } from 'lucide-react';
 
+const bentoItems = [
+  {
+    title: 'AI Image Generation',
+    description: 'Create stunning, high-resolution images from text prompts in seconds. Perfect for mockups and assets.',
+    icon: ImageIcon,
+    color: '#3b82f6',
+    glow: 'rgba(59, 130, 246, 0.15)',
+    className: 'md:col-span-2',
+    isLarge: true,
+  },
+  {
+    title: 'Conversational AI',
+    description: 'Deploy intelligent chatbots that understand context and nuance.',
+    icon: MessageSquare,
+    color: '#8b5cf6',
+    glow: 'rgba(139, 92, 246, 0.15)',
+    className: 'md:col-span-1',
+  },
+  {
+    title: 'Code Generation',
+    description: 'Accelerate development with AI-pair programming and auto-completion.',
+    icon: Code,
+    color: '#06b6d4',
+    glow: 'rgba(6, 182, 212, 0.15)',
+    className: 'md:col-span-1',
+  },
+  {
+    title: 'Voice Synthesis',
+    description: 'Generate ultra-realistic voiceovers in 50+ languages with emotional range.',
+    icon: Mic,
+    color: '#ec4899',
+    glow: 'rgba(236, 72, 153, 0.15)',
+    className: 'md:col-span-2',
+    isLarge: true,
+  },
+];
+
 export default function BentoGrid() {
   return (
     <section className="py-24 relative z-10">
@@ -11,7 +48,7 @@ export default function BentoGrid() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold mb-6"
+            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
           >
             The ultimate AI toolkit
           </motion.h2>
@@ -20,82 +57,67 @@ export default function BentoGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[250px]">
-          {/* Item 1: Large Col */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            whileHover={{ scale: 1.02 }}
-            className="md:col-span-2 glass-card p-8 group relative overflow-hidden flex flex-col"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="h-12 w-12 rounded-lg bg-primary/20 flex items-center justify-center mb-4 text-primary relative z-10">
-              <ImageIcon className="w-6 h-6" />
-            </div>
-            <h3 className="text-2xl font-semibold mb-2 relative z-10">AI Image Generation</h3>
-            <p className="text-gray-400 relative z-10 max-w-md">Create stunning, high-resolution images from text prompts in seconds. Perfect for mockups and assets.</p>
-            <div className="mt-auto self-end relative z-10 w-full h-32 bg-gray-800 rounded-lg overflow-hidden border border-gray-700">
-               {/* Decorative visualization */}
-               <div className="w-full h-full bg-gradient-to-r from-blue-500/20 to-purple-500/20 blur-xl animate-pulse"></div>
-            </div>
-          </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+          {bentoItems.map((item, index) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className={`feature-card p-10 group relative flex flex-col ${item.className}`}
+              style={{ '--glow-color': item.glow }}
+            >
+              <div className="feature-card-glow" />
+              
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="feature-icon-box mb-6 group-hover:scale-105 transition-transform duration-500">
+                  <item.icon size={24} color={item.color} strokeWidth={1.5} />
+                  <div 
+                    className="absolute inset-0 opacity-10"
+                    style={{ background: item.color, filter: 'blur(8px)' }}
+                  />
+                </div>
+                
+                <h3 className={`font-bold mb-3 text-white tracking-tight ${item.isLarge ? 'text-2xl' : 'text-xl'}`}>
+                  {item.title}
+                </h3>
+                
+                <p className="text-gray-400 leading-relaxed text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                  {item.description}
+                </p>
 
-          {/* Item 2 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            whileHover={{ scale: 1.02 }}
-            className="glass-card p-8 group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="h-12 w-12 rounded-lg bg-secondary/20 flex items-center justify-center mb-4 text-secondary relative z-10">
-              <MessageSquare className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 relative z-10">Conversational AI</h3>
-            <p className="text-gray-400 relative z-10">Deploy intelligent chatbots that understand context and nuance.</p>
-          </motion.div>
+                {item.title === 'AI Image Generation' && (
+                  <div className="mt-auto w-full h-24 bg-white/5 rounded-2xl overflow-hidden border border-white/5 relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-transparent blur-xl animate-pulse" />
+                    <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 h-8 bg-white/5 rounded-lg border border-white/10 flex items-center px-4">
+                       <div className="w-1/2 h-2 bg-white/10 rounded-full" />
+                    </div>
+                  </div>
+                )}
 
-          {/* Item 3 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            whileHover={{ scale: 1.02 }}
-            className="glass-card p-8 group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="h-12 w-12 rounded-lg bg-accent/20 flex items-center justify-center mb-4 text-accent relative z-10">
-              <Code className="w-6 h-6" />
-            </div>
-            <h3 className="text-xl font-semibold mb-2 relative z-10">Code Generation</h3>
-            <p className="text-gray-400 relative z-10">Accelerate development with AI-pair programming and auto-completion.</p>
-          </motion.div>
-
-          {/* Item 4: Large Col */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            whileHover={{ scale: 1.02 }}
-            className="md:col-span-2 glass-card p-8 group relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-            <div className="h-12 w-12 rounded-lg bg-pink-500/20 flex items-center justify-center mb-4 text-pink-400 relative z-10">
-              <Mic className="w-6 h-6" />
-            </div>
-            <h3 className="text-2xl font-semibold mb-2 relative z-10">Voice Synthesis</h3>
-            <p className="text-gray-400 relative z-10 max-w-md">Generate ultra-realistic voiceovers in 50+ languages with emotional range.</p>
-             <div className="mt-6 flex items-center gap-2 relative z-10">
-               {[...Array(20)].map((_, i) => (
-                 <div key={i} className="w-2 bg-pink-500/50 rounded-full animate-pulse" style={{ height: `${Math.random() * 40 + 10}px`, animationDelay: `${i * 0.1}s` }}></div>
-               ))}
-             </div>
-          </motion.div>
+                {item.title === 'Voice Synthesis' && (
+                  <div className="mt-auto flex items-end gap-1.5 h-16">
+                    {[...Array(30)].map((_, i) => (
+                      <motion.div 
+                        key={i} 
+                        initial={{ height: 10 }}
+                        animate={{ height: [10, Math.random() * 40 + 10, 10] }}
+                        transition={{ 
+                          repeat: Infinity, 
+                          duration: 1.5, 
+                          delay: i * 0.05,
+                          ease: "easeInOut"
+                        }}
+                        className="w-1.5 rounded-full"
+                        style={{ backgroundColor: item.color, opacity: 0.4 }}
+                      />
+                    ))}
+                  </div>
+                )}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

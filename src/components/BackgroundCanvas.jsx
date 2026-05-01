@@ -117,7 +117,7 @@ export default function BackgroundCanvas({ scrollTargetRef }) {
     <div className="absolute inset-0 z-0 pointer-events-none">
       <div className="sticky top-0 h-screen w-full bg-[#050505]">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
-        
+
         {/* Cinematic shadow gradient on the left side to smoothly hide the sharp cut on the robot's arm */}
         <div className="absolute inset-y-0 left-0 w-[45%] bg-gradient-to-r from-[#050505] via-[#050505]/70 to-transparent" />
         <div className="absolute inset-y-0 right-0 w-[20%] bg-gradient-to-l from-[#050505] to-transparent opacity-80" />
