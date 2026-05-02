@@ -9,6 +9,7 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-4 lg:col-span-3 lg:pr-8">
             <div className="mb-8">
               <OsteraLogo
+                showText
                 className="gap-2"
                 markClassName="h-11 w-auto sm:h-12"
                 textClassName="text-lg tracking-[0.14em]"

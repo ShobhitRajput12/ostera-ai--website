@@ -1,7 +1,8 @@
 import React from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import OsteraLogo from './OsteraLogo';
 
 export default function Hero() {
   return (
@@ -15,10 +16,14 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card border-white/10 mb-8"
+                className="inline-flex items-center gap-3.5 px-6 py-3 rounded-full glass-card border-white/10 mb-8 !overflow-visible"
               >
-                <Sparkles className="w-4 h-4 text-accent" />
-                <span className="text-sm font-medium text-gray-300">Introducing Ostera AI </span>
+                <OsteraLogo
+                  showText
+                  className="gap-2.5 sm:gap-3.5"
+                  markClassName="h-7 w-auto max-h-9 object-contain object-left sm:h-9"
+                  textClassName="text-base font-semibold uppercase tracking-[0.12em] sm:text-lg text-secondary"
+                />
               </motion.div>
 
               <motion.h1

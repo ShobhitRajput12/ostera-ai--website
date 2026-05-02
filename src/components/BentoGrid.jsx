@@ -86,7 +86,7 @@ export default function BentoGrid() {
                     {item.title}
                   </h3>
                   
-                  <p className="text-gray-400 leading-relaxed text-sm font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-base font-normal leading-relaxed text-gray-300 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
                     {item.description}
                   </p>
 
