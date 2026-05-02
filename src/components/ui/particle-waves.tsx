@@ -17,8 +17,29 @@ const ParticleWaves = () => {
   const [amplitude, setAmplitude] = useState(50);
   const [separation, setSeparation] = useState(100);
   const [particleColor, setParticleColor] = useState('#ffffff');
-  const [bgColor, setBgColor] = useState('#000000');
+  const [bgColor, setBgColor] = useState('transparent');
   const [controlsOpen, setControlsOpen] = useState(false);
+
+  useEffect(() => {
+    const updateColors = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setParticleColor(isDark ? '#ffffff' : '#000000');
+      setBgColor(isDark ? '#050505' : '#ffffff');
+    };
+
+    updateColors();
+
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          updateColors();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    return () => observer.disconnect();
+  }, []);
 
   const countRef = useRef(0);
   const mouseRef = useRef({ x: 0, y: 0 });
@@ -176,14 +197,17 @@ const ParticleWaves = () => {
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     rendererRef.current = renderer;
 
-    containerRef.current.appendChild(renderer.domElement);
+    if (containerRef.current) {
+      containerRef.current.innerHTML = '';
+      containerRef.current.appendChild(renderer.domElement);
+    }
 
     syncRendererSize();
 
-    renderer.setClearColor(new THREE.Color(bgColor), 1);
+    renderer.setClearColor(new THREE.Color(bgColor), 0); // 0 alpha for transparency
 
     materialRef.current = createParticleMaterial(particleColor);
     recreateParticles();
@@ -224,7 +248,7 @@ const ParticleWaves = () => {
 
   useEffect(() => {
     if (rendererRef.current) {
-      rendererRef.current.setClearColor(new THREE.Color(bgColor), 1);
+      rendererRef.current.setClearColor(new THREE.Color(bgColor), 0);
     }
   }, [bgColor]);
 
@@ -244,7 +268,7 @@ const ParticleWaves = () => {
    * ResizeObserver + syncRendererSize keep WebGL drawable size aligned to the DOM host.
    */
   return (
-    <div className="pointer-events-none absolute inset-0 z-[1] min-h-[100dvh] w-full overflow-hidden bg-black">
+    <div className="pointer-events-none absolute inset-0 z-[1] min-h-[100dvh] w-full overflow-hidden bg-transparent">
       <div ref={containerRef} className="absolute inset-0" />
 
       {createPortal(

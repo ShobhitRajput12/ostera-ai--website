@@ -36,11 +36,11 @@ export default function HowItWorks() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             How it works
           </motion.h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-foreground/70 text-lg">
             A seamless integration from data to deployed models.
           </p>
         </div>
@@ -70,8 +70,8 @@ export default function HowItWorks() {
                       />
                     </div>
 
-                    <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{step.title}</h3>
-                    <p className="text-gray-400 text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    <h3 className="text-2xl font-bold mb-4 text-foreground tracking-tight">{step.title}</h3>
+                    <p className="text-foreground/70 text-base leading-relaxed opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                       {step.description}
                     </p>
                   </div>

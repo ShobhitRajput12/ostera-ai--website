@@ -16,7 +16,7 @@ export default function CTA() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight text-white"
+              className="text-4xl md:text-6xl font-bold mb-6 font-heading tracking-tight text-foreground"
             >
               Ready to build the future?
             </motion.h2>
@@ -26,7 +26,7 @@ export default function CTA() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-gray-300 mb-10 max-w-2xl mx-auto"
+              className="text-xl text-foreground/70 mb-10 max-w-2xl mx-auto"
             >
               Join thousands of developers and companies building the next generation of AI-powered applications.
             </motion.p>
@@ -41,7 +41,7 @@ export default function CTA() {
               <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary to-secondary text-white font-semibold hover:scale-105 transition-transform shadow-[0_0_30px_rgba(59,130,246,0.3)]">
                 Start Building Free
               </button>
-              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium transition-colors">
+              <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-foreground/5 border border-foreground/10 hover:bg-foreground/10 text-foreground font-medium transition-colors">
                 Talk to Sales
               </button>
             </motion.div>

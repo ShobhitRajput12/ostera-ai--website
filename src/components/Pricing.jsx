@@ -48,13 +48,13 @@ export default function Pricing() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             Simple, transparent pricing
           </motion.h2>
           
           <div className="flex items-center justify-center gap-4 mt-8">
-            <span className={cn("text-sm", !isYearly ? "text-white font-medium" : "text-gray-400")}>Monthly</span>
+            <span className={cn("text-sm", !isYearly ? "text-foreground font-medium" : "text-foreground/50")}>Monthly</span>
             <button 
               onClick={() => setIsYearly(!isYearly)}
               className="w-14 h-7 rounded-full bg-white/5 p-1 relative transition-colors border border-white/10"
@@ -67,7 +67,7 @@ export default function Pricing() {
                 transition={{ type: "spring", stiffness: 500, damping: 30 }}
               />
             </button>
-            <span className={cn("text-sm", isYearly ? "text-white font-medium" : "text-gray-400")}>
+            <span className={cn("text-sm", isYearly ? "text-foreground font-medium" : "text-foreground/50")}>
               Yearly <span className="text-primary text-xs ml-1">(Save 20%)</span>
             </span>
           </div>
@@ -102,21 +102,21 @@ export default function Pricing() {
                     </div>
                   )}
                   
-                  <h3 className="text-3xl font-bold mb-2 text-white tracking-tight">{plan.name}</h3>
-                  <p className="text-gray-400 text-base mb-8 min-h-[48px] opacity-80">{plan.description}</p>
+                  <h3 className="text-3xl font-bold mb-2 text-foreground tracking-tight">{plan.name}</h3>
+                  <p className="text-foreground/70 text-base mb-8 min-h-[48px] opacity-80">{plan.description}</p>
                   
                   <div className="mb-8">
-                    <span className="text-5xl font-bold text-white tracking-tight">
+                    <span className="text-5xl font-bold text-foreground tracking-tight">
                       ${isYearly ? plan.priceYearly : plan.priceMonthly}
                     </span>
-                    <span className="text-gray-400 text-lg ml-1">/mo</span>
+                    <span className="text-foreground/60 text-lg ml-1">/mo</span>
                   </div>
 
                   <button className={cn(
                     "w-full py-4 rounded-xl font-bold transition-all mb-10 tracking-wide",
                     plan.popular 
                       ? "bg-primary hover:bg-primary/90 text-white shadow-[0_0_20px_rgba(59,130,246,0.3)]" 
-                      : "bg-white/5 hover:bg-white/10 text-white border border-white/10"
+                      : "bg-foreground/5 hover:bg-foreground/10 text-foreground border border-foreground/10"
                   )}>
                     Get Started
                   </button>
@@ -127,7 +127,7 @@ export default function Pricing() {
                         <div className="p-0.5 rounded-full bg-primary/20">
                           <Check className="w-4 h-4 text-primary shrink-0" />
                         </div>
-                        <span className="text-sm text-gray-300 font-medium">{feature}</span>
+                        <span className="text-sm text-foreground/80 font-medium">{feature}</span>
                       </div>
                     ))}
                   </div>

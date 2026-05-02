@@ -57,7 +57,7 @@ export default function Features() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             Supercharge your workflow
           </motion.h2>
@@ -66,13 +66,13 @@ export default function Features() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-gray-400 text-lg"
+            className="text-foreground/70 text-lg"
           >
             Everything you need to build, deploy, and scale AI applications without the headache.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto lg:px-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -97,11 +97,11 @@ export default function Features() {
                     />
                   </div>
                   
-                  <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">
+                  <h3 className="text-2xl font-bold mb-4 text-foreground tracking-tight">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-gray-400 leading-relaxed text-base font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-foreground/70 leading-relaxed text-base font-normal opacity-80 group-hover:opacity-100 transition-opacity duration-300">
                     {feature.description}
                   </p>
                 </div>

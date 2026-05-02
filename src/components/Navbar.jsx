@@ -39,10 +39,10 @@ export default function Navbar() {
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b',
         scrolled
-          ? 'glass py-2 border-white/10'
-          : 'bg-[#0f0a19]/40 backdrop-blur-[80px] py-3.5 border-transparent'
+          ? 'glass py-2'
+          : 'bg-transparent py-3.5 border-transparent'
       )}
     >
       <div
@@ -69,7 +69,7 @@ export default function Navbar() {
                 className="rounded-md outline-none ring-offset-2 ring-offset-[#0f0a19] focus-visible:ring-2 focus-visible:ring-primary/60"
                 aria-label="Ostera AI — Home"
               >
-                <OsteraLogo showText markClassName="h-11 w-auto sm:h-12" />
+                <OsteraLogo showText themeAware markClassName="h-11 w-auto sm:h-12" />
               </a>
             </motion.div>
           )}
@@ -80,7 +80,7 @@ export default function Navbar() {
             <a
               key={link}
               href={`#${link.toLowerCase()}`}
-              className="text-sm text-gray-300 transition-colors hover:text-white"
+              className="text-sm text-foreground/70 transition-colors hover:text-foreground"
             >
               {link}
             </a>
@@ -101,7 +101,7 @@ export default function Navbar() {
         </div>
 
         <button
-          className="text-gray-300 md:hidden"
+          className="text-foreground md:hidden"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}

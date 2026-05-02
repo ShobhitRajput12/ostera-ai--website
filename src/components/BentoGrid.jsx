@@ -49,16 +49,16 @@ export default function BentoGrid() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             The ultimate AI toolkit
           </motion.h2>
-          <p className="text-gray-400 text-lg">
+          <p className="text-foreground/70 text-lg">
             Everything you need to build next-generation applications in one unified platform.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px]">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[300px] max-w-6xl mx-auto lg:px-8">
           {bentoItems.map((item, index) => (
             <motion.div
               key={item.title}
@@ -82,11 +82,11 @@ export default function BentoGrid() {
                     />
                   </div>
                   
-                  <h3 className={`font-bold mb-3 text-white tracking-tight ${item.isLarge ? 'text-2xl' : 'text-xl'}`}>
+                  <h3 className={`font-bold mb-3 text-foreground tracking-tight ${item.isLarge ? 'text-2xl' : 'text-xl'}`}>
                     {item.title}
                   </h3>
                   
-                  <p className="text-base font-normal leading-relaxed text-gray-300 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
+                  <p className="text-base font-normal leading-relaxed text-foreground/70 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
                     {item.description}
                   </p>
 

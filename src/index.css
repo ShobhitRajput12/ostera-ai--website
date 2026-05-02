@@ -6,15 +6,19 @@
   :root {
     --background: #ffffff;
     --foreground: #030712;
-    --card-bg: #f3f4f6;
+    --card-bg: rgba(255, 255, 255, 0.7);
     --border-color: rgba(0, 0, 0, 0.1);
+    --glass-bg: rgba(255, 255, 255, 0.4);
+    --glass-border: rgba(0, 0, 0, 0.1);
   }
 
   .dark {
-    --background: #030712;
+    --background: #050505;
     --foreground: #f9fafb;
-    --card-bg: #111827;
+    --card-bg: rgba(15, 10, 25, 0.4);
     --border-color: rgba(255, 255, 255, 0.1);
+    --glass-bg: rgba(15, 10, 25, 0.4);
+    --glass-border: rgba(255, 255, 255, 0.1);
   }
 
   body {
@@ -30,12 +34,18 @@
 @layer utilities {
   .glass {
     /* Premium 80px blur for navigation and floating elements */
-    @apply bg-[#0f0a19]/40 backdrop-blur-[80px] border border-white/10 shadow-xl;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(80px);
+    border: 1px solid var(--glass-border);
+    @apply shadow-xl;
   }
 
   .glass-card {
-    /* Optimized 100px blur for content cards with purple tint */
-    @apply bg-[#0f0a19]/40 backdrop-blur-[100px] border border-white/10 shadow-2xl;
+    /* Optimized 100px blur for content cards */
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(100px);
+    border: 1px solid var(--glass-border);
+    @apply shadow-2xl;
     border-radius: 2rem;
     position: relative;
     overflow: hidden;
