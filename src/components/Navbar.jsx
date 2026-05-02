@@ -62,7 +62,7 @@ export default function Navbar() {
                 duration: 0.45,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="flex shrink-0 items-center"
+              className="mt-1 flex shrink-0 items-center sm:mt-0"
             >
               <a
                 href="#home"

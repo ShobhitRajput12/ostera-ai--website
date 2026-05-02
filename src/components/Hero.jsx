@@ -16,7 +16,7 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-3.5 px-6 py-3 rounded-full glass-card border-white/10 mb-8 !overflow-visible"
+                className="mt-[18px] inline-flex items-center gap-3.5 px-6 py-3 rounded-full glass-card border-white/10 mb-8 !overflow-visible sm:mt-0"
               >
                 <OsteraLogo
                   showText
