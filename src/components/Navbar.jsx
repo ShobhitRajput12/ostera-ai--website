@@ -100,12 +100,17 @@ export default function Navbar() {
           <ThemeToggle />
         </div>
 
-        <button
-          className="text-foreground md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="relative md:hidden flex flex-col items-end">
+          <button
+            className="text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+          <div className="absolute top-full mt-3 -right-2">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
 
       {mobileMenuOpen && (
@@ -137,9 +142,7 @@ export default function Navbar() {
             GPARTICLE
           </a>
 
-          <div className="flex justify-center mt-2">
-            <ThemeToggle />
-          </div>
+
         </motion.div>
       )}
     </motion.nav>
