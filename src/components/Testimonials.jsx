@@ -35,7 +35,7 @@ export default function Testimonials() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-white tracking-tight"
+            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             Loved by builders
           </motion.h2>
@@ -66,13 +66,13 @@ export default function Testimonials() {
                     ))}
                   </div>
 
-                  <p className="text-lg text-gray-300 mb-10 italic flex-grow leading-relaxed font-medium">"{testimonial.quote}"</p>
+                  <p className="text-lg text-foreground/80 mb-10 italic flex-grow leading-relaxed font-medium">"{testimonial.quote}"</p>
 
-                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-white/5">
-                    <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-white/10 group-hover:border-primary/50 transition-colors duration-300" />
+                  <div className="flex items-center gap-4 mt-auto pt-6 border-t border-foreground/10">
+                    <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full border-2 border-foreground/10 group-hover:border-primary/50 transition-colors duration-300" />
                     <div>
-                      <h4 className="font-bold text-white text-lg tracking-tight">{testimonial.name}</h4>
-                      <p className="text-sm text-gray-500 font-medium">{testimonial.role}</p>
+                      <h4 className="font-bold text-foreground text-lg tracking-tight">{testimonial.name}</h4>
+                      <p className="text-sm text-foreground/50 font-medium">{testimonial.role}</p>
                     </div>
                   </div>
                 </div>
