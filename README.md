@@ -26,7 +26,7 @@ As a Senior AI Engineer and Code Analyst, I have conducted a deep review of the 
 ## 🏗️ System Architecture
 
 ### 1. Frontend (UI & Logic)
-The project follows a modular React architecture. 
+The project follows a modular React architecture.
 *   **Global Wrapper (`App.jsx` & `Home.jsx`):** Acts as the orchestrator, layering the `z-0` fixed background under the `z-10` relative scrolling content.
 *   **Core Engine (`BackgroundCanvas.jsx`):** The beating heart of the project. It handles memory management (preloading 119 images), scroll-tracking, and Canvas paint operations.
 *   **Dumb Components:** `Hero.jsx`, `Features.jsx`, `BentoGrid.jsx`, etc. These are stateless, highly stylized components that make up the marketing content.
@@ -45,7 +45,7 @@ The project follows a modular React architecture.
 1.  **Initialization:** When the user loads `localhost:5173`, Vite serves the React bundle.
 2.  **Asset Preloading:** `BackgroundCanvas.jsx` immediately fires off 119 concurrent network requests to fetch the image sequence (`/frames/ezgif-frame-001.jpg` to `119.jpg`).
 3.  **Fallback Trigger (Safety Net):** If the images return a `404 Not Found` (because the user hasn't downloaded them), the `img.onerror` event fires. A 2-second timeout bypasses the loading state and swaps the canvas source to a single, high-res fallback image (`fallback-brain.png`).
-4.  **Render Loop:** A `requestAnimationFrame` loop starts. 
+4.  **Render Loop:** A `requestAnimationFrame` loop starts.
 5.  **User Scroll:** As the user scrolls down, `framer-motion` calculates the precise percentage of the page scrolled.
 6.  **Canvas Paint:** The loop grabs the image corresponding to that percentage, clears the canvas, and uses `context.drawImage` to paint it to the screen at 60 frames per second.
 
@@ -62,14 +62,14 @@ Because the 119 frames were not present on the hard drive, the canvas was showin
 **The Prompt I used:**
 > *"glowing AI brain with a bright central chip, electric blue neural network, energy pulses flowing through connections, futuristic digital intelligence visualization, dark background, neon blue glow, volumetric lighting, 8K ultra realistic."*
 
-**The Implementation:** 
+**The Implementation:**
 I generated this image, saved it as `fallback-brain.png`, and wrote conditional logic: *If frame sequence fails to load, render the AI fallback brain instead.*
 
 ---
 
 ## ⚠️ Issues / Missing Parts
 1.  **Missing Assets:** The actual 119-frame image sequence is physically missing from the `public/frames` directory.
-2.  **Memory Management:** Loading 119 images at once can consume significant RAM on low-end mobile devices. 
+2.  **Memory Management:** Loading 119 images at once can consume significant RAM on low-end mobile devices.
 3.  **SEO:** Being a React SPA, raw client-side rendering isn't ideal for SEO without SSR (Server-Side Rendering).
 
 ## 🚀 Improvements & Next Steps (Production-Ready)
