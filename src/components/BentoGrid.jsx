@@ -52,7 +52,7 @@ export default function BentoGrid() {
     <section className="py-24 relative z-10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -75,24 +75,24 @@ export default function BentoGrid() {
               transition={{ delay: index * 0.1 }}
               className={`${item.className} h-full`}
             >
-              <GlowCard 
-                className="h-full p-10 group relative flex flex-col" 
+              <GlowCard
+                className="h-full p-10 group relative flex flex-col"
                 glowColor={index % 2 === 0 ? 'purple' : 'blue'}
                 customSize
               >
                 <div className="relative z-10 h-full flex flex-col">
                   <div className="feature-icon-box mb-6 group-hover:scale-105 transition-transform duration-500">
                     <item.icon size={24} color={item.color} strokeWidth={1.5} />
-                    <div 
+                    <div
                       className="absolute inset-0 opacity-10"
                       style={{ background: item.color, filter: 'blur(8px)' }}
                     />
                   </div>
-                  
+
                   <h3 className={`font-bold mb-3 text-foreground tracking-tight ${item.isLarge ? 'text-2xl' : 'text-xl'}`}>
                     {item.title}
                   </h3>
-                  
+
                   <p className="text-base font-normal leading-relaxed text-foreground/70 opacity-90 transition-opacity duration-300 group-hover:opacity-100">
                     {item.description}
                   </p>
@@ -101,7 +101,7 @@ export default function BentoGrid() {
                     <div className="mt-auto w-full h-24 bg-white/5 rounded-2xl overflow-hidden border border-white/5 relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-transparent blur-xl animate-pulse" />
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 h-8 bg-white/5 rounded-lg border border-white/10 flex items-center px-4">
-                         <div className="w-1/2 h-2 bg-white/10 rounded-full" />
+                        <div className="w-1/2 h-2 bg-white/10 rounded-full" />
                       </div>
                     </div>
                   )}

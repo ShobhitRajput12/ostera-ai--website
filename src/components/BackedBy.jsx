@@ -21,7 +21,7 @@ export default function BackedBy() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            Backed By & Incubated At
+            Backed By
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -66,7 +66,7 @@ export default function BackedBy() {
                 >
                   {/* Subtle gradient overlay on hover */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                  
+
                   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
                     {/* Premium White Badge Container */}
                     <div className="w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-white shadow-[0_8px_30px_rgba(0,0,0,0.5)] flex items-center justify-center p-4 transition-all duration-500 ease-out group-hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] group-hover:-translate-y-1 ring-1 ring-white/10">
@@ -83,7 +83,7 @@ export default function BackedBy() {
                         {logo.name}
                       </span>
                     </div>
-                    
+
                     {/* Subtle Label Below */}
                     <div className="mt-4 text-[10px] font-semibold tracking-wider text-foreground/40 uppercase group-hover:text-foreground/80 transition-colors duration-500 whitespace-normal text-center">
                       {logo.name}

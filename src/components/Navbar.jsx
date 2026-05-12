@@ -142,6 +142,7 @@ export default function Navbar() {
             GParticle
           </a>
 
+
         </motion.div>
       )}
     </motion.nav>
