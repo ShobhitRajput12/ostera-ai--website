@@ -4,23 +4,23 @@ import { GlowCard } from './ui/spotlight-card';
 
 const testimonials = [
   {
-    quote: "Ostera AI completely transformed our development speed. We shipped our MVP in 2 weeks instead of 2 months.",
-    name: "Sarah Jenkins",
-    role: "CTO, NextGen Start",
+    quote: "40%+ faster rail response times.",
+    name: "Southern Railways",
+    role: "Live Prototype",
     avatar: "https://i.pravatar.cc/150?img=1",
     glow: 'rgba(59, 130, 246, 0.1)',
   },
   {
-    quote: "The voice synthesis API is indistinguishable from human voices. It's the best on the market right now.",
-    name: "David Chen",
-    role: "Product Lead, AudioTech",
+    quote: "3x battery efficiency in vehicles.",
+    name: "Auto Partners",
+    role: "Live Prototype",
     avatar: "https://i.pravatar.cc/150?img=2",
     glow: 'rgba(139, 92, 246, 0.1)',
   },
   {
-    quote: "Integrating the AI chat took literally 5 minutes. The enterprise security features made it an easy sell to our board.",
-    name: "Emily Rodriguez",
-    role: "VP Engineering, CloudScale",
+    quote: "92% student retention in BNova pilots.",
+    name: "BNova AI",
+    role: "Education Pilot",
     avatar: "https://i.pravatar.cc/150?img=3",
     glow: 'rgba(6, 182, 212, 0.1)',
   }
@@ -37,7 +37,7 @@ export default function Testimonials() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            Loved by builders
+            Built in India. Proven in the Field.
           </motion.h2>
         </div>
 

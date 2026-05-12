@@ -1,10 +1,10 @@
 import React, { useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
+import BackedBy from '../components/BackedBy';
 import Features from '../components/Features';
 import BentoGrid from '../components/BentoGrid';
 import HowItWorks from '../components/HowItWorks';
-import Testimonials from '../components/Testimonials';
 import Pricing from '../components/Pricing';
 import CTA from '../components/CTA';
 import Footer from '../components/Footer';
@@ -28,12 +28,12 @@ export default function Home() {
         <div ref={mainRef} className="relative">
           <main className="relative z-10">
             <Hero />
+            <BackedBy />
 
             <div className="relative">
               <Features />
               <BentoGrid />
               <HowItWorks />
-              <Testimonials />
               <Pricing />
               <CTA />
               <Footer />

@@ -31,7 +31,7 @@ export default function Navbar() {
     };
   }, []);
 
-  const navLinks = ['Home', 'Features', 'Pricing', 'About'];
+  const navLinks = ['Capabilities', 'Impact', 'Products', 'Contact'];
 
   return (
     <motion.nav
@@ -87,25 +87,30 @@ export default function Navbar() {
           ))}
 
           <button className="rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-2 font-medium text-white transition-all shadow-[0_0_15px_rgba(59,130,246,0.28)] hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_0_24px_rgba(59,130,246,0.42)]">
-            Get Started
+            Request Demo
           </button>
 
           <a
             href="/gparticle"
             className="flex items-center justify-center rounded-full border border-white/12 bg-white/6 px-5 py-2 text-sm font-medium text-gray-200 backdrop-blur-md transition-all duration-300 hover:border-primary/35 hover:bg-white/10 hover:text-white"
           >
-            GPARTICLE
+            GParticle
           </a>
           
           <ThemeToggle />
         </div>
 
-        <button
-          className="text-foreground md:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="relative md:hidden flex flex-col items-end">
+          <button
+            className="text-foreground"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            {mobileMenuOpen ? <X /> : <Menu />}
+          </button>
+          <div className="absolute top-full mt-3 -right-2">
+            <ThemeToggle />
+          </div>
+        </div>
       </div>
 
       {mobileMenuOpen && (
@@ -126,7 +131,7 @@ export default function Navbar() {
           ))}
 
           <button className="mt-2 rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-3 font-medium text-white">
-            Get Started
+            Request Demo
           </button>
 
           <a
@@ -134,12 +139,9 @@ export default function Navbar() {
             className="mt-2 rounded-full border border-white/12 bg-white/6 px-5 py-3 text-center font-medium text-gray-200 backdrop-blur-md transition-all hover:border-primary/35 hover:bg-white/10 hover:text-white"
             onClick={() => setMobileMenuOpen(false)}
           >
-            GPARTICLE
+            GParticle
           </a>
 
-          <div className="flex justify-center mt-2">
-            <ThemeToggle />
-          </div>
         </motion.div>
       )}
     </motion.nav>

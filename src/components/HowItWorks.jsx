@@ -5,22 +5,22 @@ import { GlowCard } from './ui/spotlight-card';
 
 const steps = [
   {
-    title: '1. Input Data',
-    description: 'Connect your existing data sources or upload files securely.',
+    title: '01. Integrate Ostera',
+    description: 'Into vehicles, trains, or learning devices.',
     icon: Database,
     color: '#3b82f6',
     glow: 'rgba(59, 130, 246, 0.12)',
   },
   {
-    title: '2. Process with AI',
-    description: 'Our proprietary models analyze and extract valuable insights.',
+    title: '02. Run On-Device',
+    description: 'Using our patented compression & inference engine.',
     icon: Cpu,
     color: '#8b5cf6',
     glow: 'rgba(139, 92, 246, 0.12)',
   },
   {
-    title: '3. Output & Action',
-    description: 'Get actionable results integrated directly into your workflow.',
+    title: '03. Deliver Instant Impact',
+    description: 'Fully offline, zero latency, maximum privacy.',
     icon: Rocket,
     color: '#06b6d4',
     glow: 'rgba(6, 182, 212, 0.12)',
@@ -38,10 +38,10 @@ export default function HowItWorks() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            How it works
+            How It Works
           </motion.h2>
           <p className="text-foreground/70 text-lg">
-            A seamless integration from data to deployed models.
+            Three Steps to On-Device AI
           </p>
         </div>
 

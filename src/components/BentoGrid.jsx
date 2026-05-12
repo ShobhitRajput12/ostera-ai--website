@@ -1,12 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Image as ImageIcon, MessageSquare, Code, Mic } from 'lucide-react';
+import { Image as ImageIcon, MessageSquare, Code, Cpu, Layers } from 'lucide-react';
 import { GlowCard } from './ui/spotlight-card';
 
 const bentoItems = [
   {
-    title: 'AI Image Generation',
-    description: 'Create stunning, high-resolution images from text prompts in seconds. Perfect for mockups and assets.',
+    title: 'GCar Intelligence Suite',
+    description: 'Makes every car intelligent with on-device vision, safety & predictive maintenance.',
     icon: ImageIcon,
     color: '#3b82f6',
     glow: 'rgba(59, 130, 246, 0.15)',
@@ -14,29 +14,36 @@ const bentoItems = [
     isLarge: true,
   },
   {
-    title: 'Conversational AI',
-    description: 'Deploy intelligent chatbots that understand context and nuance.',
+    title: 'Rail Buddy',
+    description: 'Mission-critical AI assistant for Southern Railways — real-time alerts and loco pilot support.',
     icon: MessageSquare,
     color: '#8b5cf6',
     glow: 'rgba(139, 92, 246, 0.15)',
     className: 'md:col-span-1',
   },
   {
-    title: 'Code Generation',
-    description: 'Accelerate development with AI-pair programming and auto-completion.',
+    title: 'BNova AI',
+    description: 'Adaptive offline learning companion for JEE, NEET, UPSC & competitive exams.',
     icon: Code,
     color: '#06b6d4',
     glow: 'rgba(6, 182, 212, 0.15)',
     className: 'md:col-span-1',
   },
   {
-    title: 'Voice Synthesis',
-    description: 'Generate ultra-realistic voiceovers in 50+ languages with emotional range.',
-    icon: Mic,
+    title: 'Ostera Core Engine',
+    description: 'Powered by our patent-pending on-device architecture.',
+    icon: Cpu,
+    color: '#8b5cf6',
+    glow: 'rgba(139, 92, 246, 0.15)',
+    className: 'md:col-span-1',
+  },
+  {
+    title: 'EdgeForge Toolkit',
+    description: 'Build once, deploy everywhere — Android, iOS & embedded systems.',
+    icon: Layers,
     color: '#ec4899',
     glow: 'rgba(236, 72, 153, 0.15)',
-    className: 'md:col-span-2',
-    isLarge: true,
+    className: 'md:col-span-1',
   },
 ];
 
@@ -51,10 +58,10 @@ export default function BentoGrid() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            The ultimate AI toolkit
+            Real Products. Real Impact.
           </motion.h2>
           <p className="text-foreground/70 text-lg">
-            Everything you need to build next-generation applications in one unified platform.
+            Engineered for India's Edge. Proven in the field.
           </p>
         </div>
 
@@ -90,7 +97,7 @@ export default function BentoGrid() {
                     {item.description}
                   </p>
 
-                  {item.title === 'AI Image Generation' && (
+                  {item.title === 'GCar Intelligence Suite' && (
                     <div className="mt-auto w-full h-24 bg-white/5 rounded-2xl overflow-hidden border border-white/5 relative">
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-transparent blur-xl animate-pulse" />
                       <div className="absolute inset-x-4 top-1/2 -translate-y-1/2 h-8 bg-white/5 rounded-lg border border-white/10 flex items-center px-4">
@@ -99,25 +106,7 @@ export default function BentoGrid() {
                     </div>
                   )}
 
-                  {item.title === 'Voice Synthesis' && (
-                    <div className="mt-auto flex items-end gap-1.5 h-16">
-                      {[...Array(30)].map((_, i) => (
-                        <motion.div 
-                          key={i} 
-                          initial={{ height: 10 }}
-                          animate={{ height: [10, Math.random() * 40 + 10, 10] }}
-                          transition={{ 
-                            repeat: Infinity, 
-                            duration: 1.5, 
-                            delay: i * 0.05,
-                            ease: "easeInOut"
-                          }}
-                          className="w-1.5 rounded-full"
-                          style={{ backgroundColor: item.color, opacity: 0.4 }}
-                        />
-                      ))}
-                    </div>
-                  )}
+
                 </div>
               </GlowCard>
             </motion.div>

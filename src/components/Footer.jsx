@@ -16,7 +16,11 @@ export default function Footer() {
               />
             </div>
             <p className="text-foreground/60 text-sm mb-8 leading-relaxed">
-              Empowering developers to build the next generation of intelligent applications.
+              On-Device Intelligence That Powers Real India.
+              <br /><br />
+              Patent Application No. WO2025073424A1
+              <br />
+              Incubated at IIT Madras RTBI · IIT Palakkad · Tech Partner: IITM Pravartak
             </p>
             <div className="flex items-center gap-6 text-foreground/50">
               <a href="#" className="hover:text-primary transition-colors">
@@ -34,20 +38,20 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2 lg:col-start-6">
             <h4 className="text-foreground font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#" className="hover:text-primary transition-colors">Features</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Integrations</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Pricing</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Changelog</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Documentation</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Capabilities</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Impact</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Products</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Showcase</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Demo</a></li>
             </ul>
           </div>
 
           <div className="col-span-1 lg:col-span-2 lg:col-start-9">
             <h4 className="text-foreground font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#" className="hover:text-primary transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Careers</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Blog</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">IIT Madras RTBI</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">IIT Palakkad</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Partners</a></li>
             </ul>
@@ -56,10 +60,10 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2">
             <h4 className="text-foreground font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Cookie Policy</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Security</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Privacy First</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Patent-Protected</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Zero Latency</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">100% Offline</a></li>
             </ul>
           </div>
         </div>

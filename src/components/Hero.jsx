@@ -8,10 +8,11 @@ export default function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center overflow-x-clip pt-20">
 
-      <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-10 lg:-mt-24">
+      <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-20 lg:-mt-36">
         <div className="flex w-full flex-col items-center gap-12 lg:flex-row">
           <div className="w-full lg:w-1/2 text-center lg:text-left relative z-20">
             <div>
+
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -30,9 +31,12 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-5xl md:text-7xl lg:text-8xl font-bold font-heading tracking-tight leading-tight mb-6"
+                className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading tracking-tight leading-tight mb-6"
               >
-                Build the <span className="text-gradient">Future</span> <br className="hidden md:block" /> with AI
+                On-Device <br />
+                <span className="text-gradient">Intelligence</span> <br />
+                That Powers <br />
+                Real India.
               </motion.h1>
 
               <motion.p
@@ -41,7 +45,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-lg md:text-xl text-foreground/70 max-w-2xl mb-10"
               >
-                Empower your workflow with intelligent agents, seamless integrations, and real-time insights. The next generation of SaaS is here.
+                100% Offline. Zero Latency. GCar · Rail Buddy · BNova AI — Proprietary on-device AI incubated at IITs.
               </motion.p>
 
               <motion.div
@@ -51,11 +55,11 @@ export default function Hero() {
                 className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
               >
                 <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group">
-                  Start Building Free
+                  Explore Our Prototypes
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
                 <button className="w-full sm:w-auto px-8 py-4 rounded-full glass transition-colors text-foreground font-medium">
-                  Book a Demo
+                  Watch Demo Reel
                 </button>
               </motion.div>
             </div>

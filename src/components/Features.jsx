@@ -1,50 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Shield, BarChart3, Globe, Cpu, Layers } from 'lucide-react';
+import { Zap, Shield, BarChart3, Globe } from 'lucide-react';
 import { GlowCard } from './ui/spotlight-card';
 
 const features = [
   {
-    title: 'Lightning Fast AI',
-    description: 'Process millions of data points in milliseconds with our optimized infrastructure.',
+    title: '100% Offline',
+    description: 'No internet. No cloud. Works in the remotest parts of India.',
     icon: Zap,
     color: '#facc15',
     glow: 'rgba(250, 204, 21, 0.12)',
   },
   {
-    title: 'Enterprise Security',
-    description: 'Bank-grade encryption and SOC2 compliance to keep your data safe.',
+    title: 'Zero Latency',
+    description: 'Sub-100ms responses. Instant intelligence where it matters most.',
     icon: Shield,
     color: '#4ade80',
     glow: 'rgba(74, 222, 128, 0.12)',
   },
   {
-    title: 'Advanced Analytics',
-    description: 'Deep insights and predictive modeling to drive your business forward.',
+    title: 'Privacy First',
+    description: 'Your data never leaves the device.',
     icon: BarChart3,
     color: '#3b82f6',
     glow: 'rgba(59, 130, 246, 0.12)',
   },
   {
-    title: 'Global Edge Network',
-    description: 'Deploy your AI agents to the edge for zero-latency responses worldwide.',
+    title: 'Patent-Protected Power',
+    description: 'WO2025073424A1 — Cloud-level AI on everyday Indian hardware.',
     icon: Globe,
     color: '#06b6d4',
     glow: 'rgba(6, 182, 212, 0.12)',
-  },
-  {
-    title: 'Custom Models',
-    description: 'Train and deploy fine-tuned models specific to your industry needs.',
-    icon: Cpu,
-    color: '#8b5cf6',
-    glow: 'rgba(139, 92, 246, 0.12)',
-  },
-  {
-    title: 'Seamless Integration',
-    description: 'Connect with your existing tools through our extensive API ecosystem.',
-    icon: Layers,
-    color: '#f472b6',
-    glow: 'rgba(244, 114, 182, 0.12)',
   },
 ];
 
@@ -59,7 +45,7 @@ export default function Features() {
             viewport={{ once: true }}
             className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            Supercharge your workflow
+            Intelligence That Belongs to the Device
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -68,11 +54,11 @@ export default function Features() {
             transition={{ delay: 0.1 }}
             className="text-foreground/70 text-lg"
           >
-            Everything you need to build, deploy, and scale AI applications without the headache.
+            Cloud-level AI on everyday Indian hardware. Zero dependencies, maximum privacy.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto lg:px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto lg:px-6">
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
@@ -113,3 +99,4 @@ export default function Features() {
     </section>
   );
 }
+
