@@ -7,6 +7,7 @@ interface GlowCardProps {
   size?: 'sm' | 'md' | 'lg';
   width?: string | number;
   height?: string | number;
+  backdrop?: string;
   customSize?: boolean; // When true, ignores size prop and uses width/height or className
 }
 
@@ -27,6 +28,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
   size = 'md',
   width,
   height,
+  backdrop = 'hsl(0 0% 60% / 0.12)',
   customSize = false
 }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -65,7 +67,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       '--spread': spread,
       '--radius': '14',
       '--border': '3',
-      '--backdrop': 'hsl(0 0% 60% / 0.12)',
+      '--backdrop': backdrop,
       '--backup-border': 'var(--backdrop)',
       '--size': '200',
       '--outer': '1',

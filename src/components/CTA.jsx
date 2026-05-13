@@ -4,11 +4,12 @@ import { GlowCard } from './ui/spotlight-card';
 
 export default function CTA() {
   return (
-    <section className="pt-24 pb-12 md:pb-24 relative z-10 overflow-hidden">
+    <section id="contact" className="pt-24 pb-12 md:pb-24 relative z-10 overflow-hidden scroll-mt-24">
       <div className="container mx-auto px-6 relative z-10">
         <GlowCard 
           className="max-w-5xl mx-auto rounded-3xl p-12 md:p-20 text-center relative overflow-hidden"
           glowColor="purple"
+          backdrop="hsl(0 0% 60% / 0.09)"
           customSize
         >
           <div className="relative z-10">

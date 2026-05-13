@@ -16,8 +16,6 @@ export default function Footer() {
               />
             </div>
             <p className="text-foreground/60 text-sm mb-8 leading-relaxed">
-              On-Device Intelligence That Powers Real India.
-              <br /><br />
               Patent Application No. WO2025073424A1
               <br />
               Incubated at IIT Madras RTBI · IIT Palakkad · Tech Partner: IITM Pravartak
@@ -38,11 +36,10 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2 lg:col-start-6">
             <h4 className="text-foreground font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#" className="hover:text-primary transition-colors">Capabilities</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Impact</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Products</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Showcase</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Demo</a></li>
+              <li><a href="#capabilities" className="hover:text-primary transition-colors">Capabilities</a></li>
+              <li><a href="#impact" className="hover:text-primary transition-colors">Impact</a></li>
+              <li><a href="#products" className="hover:text-primary transition-colors">Products</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Demo</a></li>
             </ul>
           </div>
 
@@ -60,8 +57,8 @@ export default function Footer() {
           <div className="col-span-1 lg:col-span-2">
             <h4 className="text-foreground font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="https://docs.google.com/document/d/15keVSGJPHu3HCqbVnE34nsvycg8uO6EIiUpEKDysspQ/edit?tab=t.0" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Privacy Policy</a></li>
-              <li><a href="https://docs.google.com/document/d/1t_t2b8uQPHMuc4gq1JA5PWPIozZjzIef3hXRiF1bJ84/edit?usp=sharing" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Terms and Conditions</a></li>
+              <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
+              <li><a href="/terms-and-conditions" className="hover:text-primary transition-colors">Terms and Conditions</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Patent-Protected</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Zero Latency</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">100% Offline</a></li>

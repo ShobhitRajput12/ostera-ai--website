@@ -1,8 +1,49 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Spline from '@splinetool/react-spline';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import OsteraLogo from './OsteraLogo';
+
+const COLOR_GRADIENTS = [
+  'linear-gradient(135deg, #a78bfa, #818cf8)',
+  'linear-gradient(135deg, #f472b6, #fb7185)',
+  'linear-gradient(135deg, #34d399, #06b6d4)',
+  'linear-gradient(135deg, #fbbf24, #f97316)',
+  'linear-gradient(135deg, #60a5fa, #a78bfa)',
+  'linear-gradient(135deg, #f9a8d4, #fde68a)',
+];
+
+function ColorCyclingText({ children }) {
+  const [index, setIndex] = useState(0);
+  const [fade, setFade] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFade(false);
+      setTimeout(() => {
+        setIndex(prev => (prev + 1) % COLOR_GRADIENTS.length);
+        setFade(true);
+      }, 300);
+    }, 2000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <span
+      style={{
+        backgroundImage: COLOR_GRADIENTS[index],
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        transition: 'opacity 0.3s ease',
+        opacity: fade ? 1 : 0,
+        display: 'inline-block',
+      }}
+    >
+      {children}
+    </span>
+  );
+}
 
 export default function Hero() {
   return (
@@ -14,6 +55,7 @@ export default function Hero() {
             <div>
 
               <motion.div
+                id="hero-logo-badge"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -21,9 +63,9 @@ export default function Hero() {
               >
                 <OsteraLogo
                   showText
-                  className="gap-2.5 sm:gap-3.5"
-                  markClassName="h-7 w-auto max-h-9 object-contain object-left sm:h-9"
-                  textClassName="text-base font-semibold uppercase tracking-[0.12em] sm:text-lg text-secondary"
+                  className="gap-3.5 sm:gap-4.5"
+                  markClassName="h-9 w-auto max-h-11 object-contain object-left sm:h-11"
+                  textClassName="text-xl font-semibold uppercase tracking-[0.12em] sm:text-2xl text-secondary"
                 />
               </motion.div>
 
@@ -34,25 +76,16 @@ export default function Hero() {
                 className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading tracking-tight leading-tight mb-6"
               >
                 On-Device <br />
-                <span className="text-gradient">Intelligence</span> <br />
+                <ColorCyclingText>Intelligence</ColorCyclingText> <br />
                 That Powers <br />
                 Real India.
               </motion.h1>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-lg md:text-xl text-foreground/70 max-w-2xl mb-10"
-              >
-                100% Offline. Zero Latency. GCar · Rail Buddy · BNova AI — Proprietary on-device AI incubated at IITs.
-              </motion.p>
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6"
               >
                 <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group">
                   Explore Our Prototypes
