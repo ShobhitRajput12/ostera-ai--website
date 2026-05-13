@@ -10,7 +10,7 @@ const logos = [
 
 export default function BackedBy() {
   return (
-    <section className="relative z-10 overflow-hidden py-24">
+    <section id="company" className="relative z-10 overflow-hidden py-24 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.h2

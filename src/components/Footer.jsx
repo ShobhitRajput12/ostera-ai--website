@@ -40,17 +40,17 @@ export default function Footer() {
               <li><a href="#impact" className="hover:text-primary transition-colors">Impact</a></li>
               <li><a href="#products" className="hover:text-primary transition-colors">Products</a></li>
               <li><a href="#contact" className="hover:text-primary transition-colors">Demo</a></li>
+              <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
 
           <div className="col-span-1 lg:col-span-2 lg:col-start-9">
             <h4 className="text-foreground font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#" className="hover:text-primary transition-colors">IIT Madras RTBI</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">IIT Palakkad</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Partners</a></li>
+              <li><a href="#company" className="hover:text-primary transition-colors">IIT Madras RTBI</a></li>
+              <li><a href="#company" className="hover:text-primary transition-colors">IIT Palakkad</a></li>
+              <li><a href="#company" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
+              <li><a href="#company" className="hover:text-primary transition-colors">Partners</a></li>
             </ul>
           </div>
 
