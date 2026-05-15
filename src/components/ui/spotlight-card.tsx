@@ -39,15 +39,23 @@ const GlowCard: React.FC<GlowCardProps> = ({
       const { clientX: x, clientY: y } = e;
       
       if (cardRef.current) {
-        cardRef.current.style.setProperty('--x', x.toFixed(2));
-        cardRef.current.style.setProperty('--xp', (x / window.innerWidth).toFixed(2));
-        cardRef.current.style.setProperty('--y', y.toFixed(2));
-        cardRef.current.style.setProperty('--yp', (y / window.innerHeight).toFixed(2));
+        const rect = cardRef.current.getBoundingClientRect();
+        cardRef.current.style.setProperty('--x', (x - rect.left).toFixed(2));
+        cardRef.current.style.setProperty('--xp', ((x - rect.left) / rect.width).toFixed(2));
+        cardRef.current.style.setProperty('--y', (y - rect.top).toFixed(2));
+        cardRef.current.style.setProperty('--yp', ((y - rect.top) / rect.height).toFixed(2));
       }
     };
 
-    document.addEventListener('pointermove', syncPointer);
-    return () => document.removeEventListener('pointermove', syncPointer);
+    const card = cardRef.current;
+    if (card) {
+      card.addEventListener('pointermove', syncPointer);
+    }
+    return () => {
+      if (card) {
+        card.removeEventListener('pointermove', syncPointer);
+      }
+    };
   }, []);
 
   const config = glowColorMap[glowColor] || glowColorMap.purple;
@@ -86,7 +94,7 @@ const GlowCard: React.FC<GlowCardProps> = ({
       backgroundAttachment: 'fixed',
       border: 'var(--border-size) solid var(--backup-border)',
       position: 'relative',
-      touchAction: 'none',
+      touchAction: 'pan-y',
     };
 
     // Add width and height if provided

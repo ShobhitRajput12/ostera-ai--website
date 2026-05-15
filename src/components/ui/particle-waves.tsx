@@ -12,7 +12,7 @@ const ParticleWaves = () => {
   const materialRef = useRef<THREE.SpriteMaterial | null>(null);
   const animationRef = useRef<number>(0);
 
-  const [density, setDensity] = useState(50);
+  const [density, setDensity] = useState(40);
   const [speed, setSpeed] = useState(0.1);
   const [amplitude, setAmplitude] = useState(50);
   const [separation, setSeparation] = useState(100);

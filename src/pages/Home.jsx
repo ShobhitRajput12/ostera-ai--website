@@ -30,7 +30,7 @@ export default function Home() {
             <Hero />
             <BackedBy />
 
-            <div className="relative">
+            <div className="relative space-y-4 md:space-y-0">
               <Features />
               <BentoGrid />
               <HowItWorks />

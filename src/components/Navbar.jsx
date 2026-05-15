@@ -108,7 +108,7 @@ export default function Navbar() {
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
-          <div className="absolute top-full mt-3 -right-2">
+          <div className="absolute top-full mt-8 -right-2">
             <ThemeToggle />
           </div>
         </div>

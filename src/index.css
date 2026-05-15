@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    scroll-behavior: smooth;
     --background: #ffffff;
     --foreground: #030712;
     --card-bg: rgba(255, 255, 255, 0.7);
@@ -33,17 +34,17 @@
 
 @layer utilities {
   .glass {
-    /* Premium 80px blur for navigation and floating elements */
+    /* Optimized blur for navigation and floating elements */
     background-color: var(--glass-bg);
-    backdrop-filter: blur(80px);
+    backdrop-filter: blur(40px);
     border: 1px solid var(--glass-border);
     @apply shadow-xl;
   }
 
   .glass-card {
-    /* Optimized 100px blur for content cards */
+    /* Optimized blur for content cards */
     background-color: var(--glass-bg);
-    backdrop-filter: blur(100px);
+    backdrop-filter: blur(40px);
     border: 1px solid var(--glass-border);
     @apply shadow-2xl;
     border-radius: 2rem;

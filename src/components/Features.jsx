@@ -36,14 +36,14 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="capabilities" className="py-24 relative z-10 scroll-mt-24">
+    <section id="capabilities" className="py-16 md:py-24 relative z-10 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
+            className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
             Intelligence That Belongs to the Device
           </motion.h2>

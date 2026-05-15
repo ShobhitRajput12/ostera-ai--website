@@ -49,7 +49,7 @@ export default function Hero() {
   return (
     <section id="home" className="relative flex min-h-screen items-center justify-center overflow-x-clip pt-20">
 
-      <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-20 lg:-mt-36">
+      <div className="container mx-auto px-6 relative z-10 flex w-full items-center -mt-8 sm:-mt-20 lg:-mt-36">
         <div className="flex w-full flex-col items-center gap-12 lg:flex-row">
           <div className="w-full lg:w-1/2 text-center lg:text-left relative z-20">
             <div>
@@ -73,32 +73,32 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="text-4xl md:text-5xl lg:text-7xl font-bold font-heading tracking-tight leading-tight mb-6"
+                className="text-[2.5rem] leading-[1.1] sm:text-4xl md:text-5xl lg:text-7xl font-bold font-heading tracking-tight mb-6"
               >
                 On-Device <br />
                 <ColorCyclingText>Intelligence</ColorCyclingText> <br />
                 That Powers <br />
                 Real India.
               </motion.h1>
-
+              
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6"
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5"
               >
-                <button className="w-full sm:w-auto px-8 py-4 rounded-full bg-foreground text-background font-semibold hover:opacity-90 transition-opacity flex items-center justify-center gap-2 group">
+                <button className="w-full sm:w-auto px-10 py-4 rounded-full bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_35px_rgba(147,51,234,0.5)]">
                   Explore Our Prototypes
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button className="w-full sm:w-auto px-8 py-4 rounded-full glass transition-colors text-foreground font-medium">
+                <button className="w-full sm:w-auto px-10 py-4 rounded-full glass border-white/10 hover:border-white/20 transition-all text-foreground font-semibold hover:bg-white/5 active:scale-[0.98]">
                   Watch Demo Reel
                 </button>
               </motion.div>
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center z-10">
+          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center z-10 -mt-12 lg:mt-0">
             <div
               className="absolute inset-0 w-[300%] h-full -left-[100%] flex items-center justify-center"
               style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)' }}
