@@ -4,7 +4,7 @@ import { GlowCard } from './ui/spotlight-card';
 
 const logos = [
   { name: 'IITM Incubation Cell', src: '/IC Round Logo.png' },
-  { name: 'IITM Pravartak', src: '/pravartak-logo.jpeg' },
+  { name: 'IITM Pravartak', src: '/pravartak-logo.png' },
   { name: 'RTBI', src: '/RTBI transparent logo.png' },
 ];
 
@@ -39,14 +39,14 @@ export default function BackedBy() {
               className="mx-auto flex w-full max-w-[320px] flex-col items-center justify-center"
             >
                 <GlowCard
-                  className="group relative flex min-h-[150px] w-full flex-col items-center justify-center overflow-hidden p-5"
+                  className="group relative flex min-h-[165px] w-full flex-col items-center justify-center overflow-hidden p-5"
                   glowColor={index % 2 === 0 ? 'purple' : 'blue'}
                   customSize
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                   <div className="relative z-10 flex flex-col items-center justify-center w-full h-full">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white p-3 shadow-[0_8px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] md:h-20 md:w-20">
+                    <div className="flex h-24 w-24 items-center justify-center rounded-2xl bg-white p-1 shadow-[0_8px_30px_rgba(0,0,0,0.5)] ring-1 ring-white/10 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] md:h-28 md:w-28">
                       <img
                         src={logo.src}
                         alt={logo.name}
@@ -61,7 +61,7 @@ export default function BackedBy() {
                       </span>
                     </div>
 
-                    <div className="mt-3 text-[10px] font-semibold tracking-wider text-center text-foreground/40 uppercase whitespace-normal transition-colors duration-500 group-hover:text-foreground/80">
+                    <div className="mt-4 text-[10px] font-semibold tracking-wider text-center text-foreground/40 uppercase whitespace-normal transition-colors duration-500 group-hover:text-foreground/80">
                       {logo.name}
                     </div>
                   </div>

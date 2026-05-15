@@ -1,12 +1,13 @@
 import React from 'react';
+
 import OsteraLogo from './OsteraLogo';
 
 export default function Footer() {
   return (
-    <footer className="relative z-20 border-t border-foreground/10 dark:border-black bg-transparent pt-6 pb-4 md:pt-8">
-      <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-6 lg:gap-8 mb-8 md:mb-10">
-          <div className="col-span-2 md:col-span-4 lg:col-span-3 lg:pr-8">
+    <footer className="relative z-20 border-t border-foreground/10 bg-transparent pt-8 pb-6 md:pt-8 md:pb-4">
+      <div className="container relative z-10 mx-auto px-6">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-12 gap-6 lg:gap-8 mb-8 md:mb-10">
+          <div className="col-span-3 md:col-span-4 lg:col-span-3 lg:pr-8">
             <div className="mb-8">
               <OsteraLogo
                 showText
@@ -16,8 +17,6 @@ export default function Footer() {
               />
             </div>
             <p className="text-foreground/60 text-sm mb-8 leading-relaxed">
-              Patent Application No. WO2025073424A1
-              <br />
               Incubated at IIT Madras RTBI · IIT Palakkad · Tech Partner: IITM Pravartak
             </p>
             <div className="flex items-center gap-6 text-foreground/50">
@@ -33,7 +32,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="col-span-1 lg:col-span-2 lg:col-start-6">
+          <div className="col-span-1 md:col-span-1 lg:col-span-2 lg:col-start-6">
             <h4 className="text-foreground font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li><a href="#capabilities" className="hover:text-primary transition-colors">Capabilities</a></li>
@@ -44,7 +43,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-1 lg:col-span-2 lg:col-start-9">
+          <div className="col-span-1 md:col-span-1 lg:col-span-2 lg:col-start-9">
             <h4 className="text-foreground font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li><a href="#company" className="hover:text-primary transition-colors">IIT Madras RTBI</a></li>
@@ -54,7 +53,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="col-span-1 lg:col-span-2">
+          <div className="col-span-1 md:col-span-1 lg:col-span-2">
             <h4 className="text-foreground font-semibold mb-4">Legal</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
@@ -65,8 +64,10 @@ export default function Footer() {
             </ul>
           </div>
         </div>
+      </div>
 
-        <div className="pt-2 border-t border-foreground/10 dark:border-black text-center text-sm text-foreground/40">
+      <div className="w-full pt-3 border-t border-foreground/10 text-center text-sm text-foreground/40">
+        <div className="container mx-auto px-6">
           <p>&copy; {new Date().getFullYear()} Ostera AI Inc. All rights reserved.</p>
         </div>
       </div>

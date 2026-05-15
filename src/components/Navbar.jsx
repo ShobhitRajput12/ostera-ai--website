@@ -118,7 +118,7 @@ export default function Navbar() {
         <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: 'auto' }}
-          className="glass mt-3 flex flex-col gap-4 border-t border-white/10 px-6 py-4 md:hidden"
+          className="glass mt-20 flex flex-col gap-4 border-t border-white/10 px-6 py-4 md:hidden"
         >
           {navLinks.map((link) => (
             <a

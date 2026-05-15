@@ -104,7 +104,6 @@ const ParticleWaves = () => {
 
   const handleTouchMove = (event: TouchEvent) => {
     if (event.touches.length === 1) {
-      event.preventDefault();
       mouseRef.current.x = event.touches[0].pageX - windowHalfRef.current.x;
       mouseRef.current.y = event.touches[0].pageY - windowHalfRef.current.y;
     }
@@ -213,14 +212,14 @@ const ParticleWaves = () => {
     recreateParticles();
 
     document.addEventListener('mousemove', handleMouseMove);
-    document.addEventListener('touchmove', handleTouchMove, { passive: false });
+    document.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('resize', handleResize);
 
     const resizeObserver =
       typeof ResizeObserver !== 'undefined'
         ? new ResizeObserver(() => {
-            syncRendererSize();
-          })
+          syncRendererSize();
+        })
         : null;
     resizeObserver?.observe(containerRef.current);
 
@@ -272,7 +271,7 @@ const ParticleWaves = () => {
       <div ref={containerRef} className="absolute inset-0" />
 
       {createPortal(
-        <div className="pointer-events-auto fixed bottom-6 right-6 z-40 flex max-h-[calc(100vh-1.5rem)] flex-col items-end gap-2">
+        <div className="pointer-events-auto fixed bottom-12 right-4 z-40 flex max-h-[calc(100vh-0.75rem)] flex-col items-end gap-2 sm:bottom-6 sm:right-6 sm:max-h-[calc(100vh-1.5rem)]">
           {controlsOpen && (
             <div className="max-h-[min(32rem,calc(100vh-8rem))] w-52 overflow-y-auto rounded-lg border border-gray-600 bg-black/90 p-4 text-xs text-white shadow-xl backdrop-blur-md">
               <div className="-mt-1 mb-2 flex items-center justify-end">
@@ -411,7 +410,7 @@ const ParticleWaves = () => {
           <button
             type="button"
             onClick={() => setControlsOpen((open) => !open)}
-            className="shrink-0 rounded-full border border-white/15 bg-black/70 px-4 py-2 text-xs font-medium text-white shadow-lg backdrop-blur-md transition-colors hover:border-white/25 hover:bg-black/85"
+            className="shrink-0 rounded-full border border-white/15 bg-black/70 px-3 py-2 text-[11px] font-medium text-white shadow-lg backdrop-blur-md transition-colors hover:border-white/25 hover:bg-black/85 sm:px-4 sm:text-xs"
           >
             {controlsOpen ? 'Close' : 'Play background'}
           </button>
