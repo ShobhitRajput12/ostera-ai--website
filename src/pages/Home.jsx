@@ -31,11 +31,7 @@ export default function Home() {
             <BackedBy />
 
             <div className="relative space-y-4 md:space-y-0">
-              <Features />
-              <BentoGrid />
-              <HowItWorks />
               <Pricing />
-              <CTA />
               <Footer />
             </div>
           </main>

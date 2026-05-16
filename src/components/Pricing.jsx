@@ -23,22 +23,16 @@ const products = [
     glow: 'rgba(6, 182, 212, 0.15)',
   },
   {
-    name: 'Ostera Runtime',
-    description: 'Lightweight SDK for developers',
+    name: 'GParticle',
+    description: 'Patented On-device AI Technology',
     color: '#facc15',
     glow: 'rgba(250, 204, 21, 0.15)',
-  },
-  {
-    name: 'EdgeForge Studio',
-    description: 'On-device model optimization platform',
-    color: '#ec4899',
-    glow: 'rgba(236, 72, 153, 0.15)',
   },
 ];
 
 export default function Pricing() {
   return (
-    <section id="showcase" className="py-24 relative z-10">
+    <section id="products" className="py-24 relative z-10">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.h2 
@@ -54,7 +48,7 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {products.map((product, index) => (
             <motion.div
               key={product.name}
@@ -63,10 +57,7 @@ export default function Pricing() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className={cn(
-                "h-full flex flex-col relative",
-                index === 3 || index === 4 ? "lg:col-span-1 lg:max-w-md lg:mx-auto w-full" : ""
-              )}
+              className="h-full flex flex-col relative"
             >
               <GlowCard 
                 className="h-full p-10 flex flex-col relative"

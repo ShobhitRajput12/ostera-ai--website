@@ -40,7 +40,7 @@ export default function Navbar() {
     };
   }, []);
 
-  const navLinks = ['Capabilities', 'Impact', 'Products', 'Contact'];
+  const navLinks = ['Backed', 'Products'];
 
   return (
     <motion.nav
@@ -87,18 +87,20 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link}
-              href={`#${link.toLowerCase()}`}
+              href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
               className="text-sm text-foreground/70 transition-colors hover:text-foreground"
             >
               {link}
             </a>
           ))}
 
-          <button className="rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-2 font-medium text-white transition-all shadow-[0_0_15px_rgba(59,130,246,0.28)] hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_0_24px_rgba(59,130,246,0.42)]">
-            Request Demo
-          </button>
 
-          <ThemeToggle />
+          <a 
+            href="mailto:coo@ostera.ai"
+            className="rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-2.5 font-medium text-white transition-all shadow-[0_0_15px_rgba(59,130,246,0.28)] hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_0_24px_rgba(59,130,246,0.42)]"
+          >
+            Contact Us
+          </a>
         </div>
 
         <div className="relative flex flex-col items-end md:hidden">
@@ -123,7 +125,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <a
               key={link}
-              href={`#${link.toLowerCase()}`}
+              href={`#${link.toLowerCase().replace(/\s+/g, '-')}`}
               className="py-2 text-gray-300 transition-colors hover:text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -131,9 +133,12 @@ export default function Navbar() {
             </a>
           ))}
 
-          <button className="mt-2 rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-3 font-medium text-white">
-            Request Demo
-          </button>
+          <a 
+            href="mailto:coo@ostera.ai"
+            className="mt-2 text-center rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-3 font-medium text-white"
+          >
+            Contact Us
+          </a>
         </motion.div>
       )}
     </motion.nav>

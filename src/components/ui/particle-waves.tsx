@@ -17,7 +17,7 @@ const ParticleWaves = () => {
   const [amplitude, setAmplitude] = useState(50);
   const [separation, setSeparation] = useState(100);
   const [particleColor, setParticleColor] = useState('#ffffff');
-  const [bgColor, setBgColor] = useState('transparent');
+  const [bgColor, setBgColor] = useState('#000000');
   const [controlsOpen, setControlsOpen] = useState(false);
 
   useEffect(() => {

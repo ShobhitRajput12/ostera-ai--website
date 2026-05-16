@@ -75,26 +75,9 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.1 }}
                 className="text-[2.5rem] leading-[1.1] sm:text-4xl md:text-5xl lg:text-7xl font-bold font-heading tracking-tight mb-6"
               >
-                On-Device <br />
-                <ColorCyclingText>Intelligence</ColorCyclingText> <br />
-                That Powers <br />
-                Real India.
+                Innovation <br />
+                <ColorCyclingText>That Flows.</ColorCyclingText>
               </motion.h1>
-              
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-5"
-              >
-                <button className="w-full sm:w-auto px-10 py-4 rounded-full bg-gradient-to-r from-primary via-secondary to-accent text-white font-bold hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 group shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_35px_rgba(147,51,234,0.5)]">
-                  Explore Our Prototypes
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                </button>
-                <button className="w-full sm:w-auto px-10 py-4 rounded-full glass border-white/10 hover:border-white/20 transition-all text-foreground font-semibold hover:bg-white/5 active:scale-[0.98]">
-                  Watch Demo Reel
-                </button>
-              </motion.div>
             </div>
           </div>
 

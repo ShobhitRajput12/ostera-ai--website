@@ -6,11 +6,12 @@ const logos = [
   { name: 'IITM Incubation Cell', src: '/IC Round Logo.png' },
   { name: 'IITM Pravartak', src: '/pravartak-logo.png' },
   { name: 'RTBI', src: '/RTBI transparent logo.png' },
+  { name: 'TECHIN IIT Palakkad', src: '/TECHIN_Logo.png' },
 ];
 
 export default function BackedBy() {
   return (
-    <section id="company" className="relative z-10 overflow-hidden py-16 md:py-24 scroll-mt-24">
+    <section id="backed-by" className="relative z-10 overflow-hidden py-16 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.h2
@@ -19,7 +20,7 @@ export default function BackedBy() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            Backed By
+            Backed
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
@@ -32,7 +33,7 @@ export default function BackedBy() {
           </motion.p>
         </div>
 
-        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 py-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-5 py-10 sm:grid-cols-2 lg:grid-cols-4">
           {logos.map((logo, index) => (
             <div
               key={logo.name}

@@ -17,7 +17,7 @@ export default function Footer() {
               />
             </div>
             <p className="text-foreground/60 text-sm mb-8 leading-relaxed">
-              Incubated at IIT Madras RTBI · IIT Palakkad · Tech Partner: IITM Pravartak
+              Incubated at IITM Incubation Cell & RTBI · TECHIN IIT Palakkad · Tech Partner: IITM Pravartak
             </p>
             <div className="flex items-center gap-6 text-foreground/50">
               <a href="#" className="hover:text-primary transition-colors">
@@ -35,20 +35,18 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1 lg:col-span-2 lg:col-start-6">
             <h4 className="text-foreground font-semibold mb-4">Product</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#capabilities" className="hover:text-primary transition-colors">Capabilities</a></li>
-              <li><a href="#impact" className="hover:text-primary transition-colors">Impact</a></li>
               <li><a href="#products" className="hover:text-primary transition-colors">Products</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Demo</a></li>
-              <li><a href="#contact" className="hover:text-primary transition-colors">Contact</a></li>
+              <li><a href="mailto:coo@ostera.ai" className="hover:text-primary transition-colors">Contact</a></li>
             </ul>
           </div>
 
           <div className="col-span-1 md:col-span-1 lg:col-span-2 lg:col-start-9">
             <h4 className="text-foreground font-semibold mb-4">Company</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
-              <li><a href="#company" className="hover:text-primary transition-colors">IIT Madras RTBI</a></li>
-              <li><a href="#company" className="hover:text-primary transition-colors">IIT Palakkad</a></li>
-              <li><a href="#company" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
+              <li><a href="https://rtbi.in/incubationiitm/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">IITM Incubation Cell</a></li>
+              <li><a href="https://rtbi.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">RTBI</a></li>
+              <li><a href="https://techin-iitpkd.org" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">TECHIN IIT Palakkad</a></li>
+              <li><a href="https://iitmpravartak.org.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
               <li><a href="#company" className="hover:text-primary transition-colors">Partners</a></li>
             </ul>
           </div>
