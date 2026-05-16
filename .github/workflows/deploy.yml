@@ -1,0 +1,45 @@
+name: Deploy to Lightsail
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy to AWS Lightsail
+        uses: appleboy/ssh-action@v1.0.3
+
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          port: 22
+
+          script: |
+            cd ~/ostera/OsteraWebsite
+
+            echo "Pulling latest code..."
+            git pull origin main
+
+            echo "Installing dependencies..."
+            npm install
+
+            echo "Building Vite app..."
+            rm -rf dist
+            npm run build
+
+            echo "Deploying build files..."
+            sudo rm -rf /var/www/html/*
+            sudo cp -r dist/* /var/www/html/
+
+            echo "Restarting nginx..."
+            sudo systemctl restart nginx
+
+            echo "Deployment completed successfully!"
