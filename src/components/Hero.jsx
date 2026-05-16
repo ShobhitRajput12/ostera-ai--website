@@ -81,7 +81,7 @@ export default function Hero() {
             </div>
           </div>
 
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center z-10 -mt-12 lg:mt-0">
+          <div className="w-full lg:w-1/2 h-[50vh] lg:h-screen relative flex items-center justify-center z-10 mt-2 lg:mt-20">
             <div
               className="absolute inset-0 w-[300%] h-full -left-[100%] flex items-center justify-center"
               style={{ WebkitMaskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)', maskImage: 'linear-gradient(to bottom, black 85%, transparent 100%)' }}

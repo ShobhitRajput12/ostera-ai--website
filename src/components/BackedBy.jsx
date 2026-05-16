@@ -11,7 +11,7 @@ const logos = [
 
 export default function BackedBy() {
   return (
-    <section id="backed-by" className="relative z-10 overflow-hidden py-16 md:py-24 scroll-mt-24">
+    <section id="partners" className="relative z-10 overflow-hidden py-16 md:py-24 scroll-mt-24">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16 max-w-2xl mx-auto">
           <motion.h2
@@ -20,7 +20,7 @@ export default function BackedBy() {
             viewport={{ once: true }}
             className="text-3xl md:text-5xl font-bold mb-6 text-foreground tracking-tight"
           >
-            Backed
+            Backed By
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

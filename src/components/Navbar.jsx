@@ -40,7 +40,7 @@ export default function Navbar() {
     };
   }, []);
 
-  const navLinks = ['Backed', 'Products'];
+  const navLinks = ['Partners', 'Products'];
 
   return (
     <motion.nav
@@ -101,18 +101,18 @@ export default function Navbar() {
           >
             Contact Us
           </a>
+          
+          <ThemeToggle />
         </div>
 
-        <div className="relative flex flex-col items-end md:hidden">
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
           <button
             className="text-foreground"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
-          <div className="absolute top-full mt-8 -right-2">
-            <ThemeToggle />
-          </div>
         </div>
       </div>
 

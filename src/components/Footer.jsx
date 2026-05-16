@@ -41,13 +41,12 @@ export default function Footer() {
           </div>
 
           <div className="col-span-1 md:col-span-1 lg:col-span-2 lg:col-start-9">
-            <h4 className="text-foreground font-semibold mb-4">Company</h4>
+            <h4 className="text-foreground font-semibold mb-4">Partners</h4>
             <ul className="space-y-2 text-sm text-foreground/60">
               <li><a href="https://rtbi.in/incubationiitm/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">IITM Incubation Cell</a></li>
               <li><a href="https://rtbi.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">RTBI</a></li>
               <li><a href="https://techin-iitpkd.org" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">TECHIN IIT Palakkad</a></li>
               <li><a href="https://iitmpravartak.org.in" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">IITM Pravartak</a></li>
-              <li><a href="#company" className="hover:text-primary transition-colors">Partners</a></li>
             </ul>
           </div>
 
