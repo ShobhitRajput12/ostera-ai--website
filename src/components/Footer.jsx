@@ -59,8 +59,6 @@ export default function Footer() {
               <li><a href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</a></li>
               <li><a href="/terms-and-conditions" className="hover:text-primary transition-colors">Terms and Conditions</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Patent-Protected</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Zero Latency</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">100% Offline</a></li>
             </ul>
           </div>
         </div>
