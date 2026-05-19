@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import emailjs from '@emailjs/browser';
 import { X, Mail, MapPin, CheckCircle2 } from 'lucide-react';
 
+// ContactModal component for Ostera AI website
+
 export default function ContactModal({ isOpen, onClose }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
