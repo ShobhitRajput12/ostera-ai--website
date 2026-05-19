@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import BackedBy from '../components/BackedBy';
@@ -9,9 +9,10 @@ import Pricing from '../components/Pricing';
 import CTA from '../components/CTA';
 import Footer from '../components/Footer';
 import ParticleWaves from '../components/ui/particle-waves';
-
+import ContactModal from '../components/ContactModal';
 
 export default function Home() {
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const mainRef = useRef(null);
 
   return (
@@ -24,7 +25,7 @@ export default function Home() {
       </div>
 
       <div className="relative z-10">
-        <Navbar />
+        <Navbar onContactClick={() => setIsContactModalOpen(true)} />
         <div ref={mainRef} className="relative">
           <main className="relative z-10">
             <Hero />
@@ -32,11 +33,16 @@ export default function Home() {
 
             <div className="relative space-y-4 md:space-y-0">
               <Pricing />
-              <Footer />
+              <Footer onContactClick={() => setIsContactModalOpen(true)} />
             </div>
           </main>
         </div>
       </div>
+
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </div>
   );
 }

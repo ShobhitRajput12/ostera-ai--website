@@ -1,11 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import OsteraLogo from './OsteraLogo';
-import ContactModal from './ContactModal';
 
-export default function Footer() {
-  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
-
+export default function Footer({ onContactClick }) {
   return (
     <footer className="relative z-20 border-t border-foreground/10 bg-transparent pt-8 pb-6 md:pt-8 md:pb-4">
       <div className="container relative z-10 mx-auto px-6">
@@ -41,7 +38,7 @@ export default function Footer() {
               <li><a href="#products" className="hover:text-primary transition-colors">Products</a></li>
               <li>
                 <button 
-                  onClick={() => setIsContactModalOpen(true)}
+                  onClick={onContactClick}
                   className="hover:text-primary transition-colors bg-transparent border-none p-0 cursor-pointer outline-none"
                 >
                   Contact
@@ -76,10 +73,6 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Ostera AI Inc. All rights reserved.</p>
         </div>
       </div>
-      <ContactModal 
-        isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
-      />
     </footer>
   );
 }
