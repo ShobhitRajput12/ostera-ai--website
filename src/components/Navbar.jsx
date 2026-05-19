@@ -4,11 +4,13 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '../lib/utils';
 import OsteraLogo from './OsteraLogo';
 import ThemeToggle from './ui/ThemeToggle';
+import ContactModal from './ContactModal';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [showNavLogo, setShowNavLogo] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const navRef = useRef(null);
 
   useEffect(() => {
@@ -95,12 +97,12 @@ export default function Navbar() {
           ))}
 
 
-          <a 
-            href="mailto:coo@ostera.ai"
-            className="rounded-full bg-gradient-to-r from-primary to-secondary px-6 py-2.5 font-medium text-white transition-all shadow-[0_0_15px_rgba(59,130,246,0.28)] hover:from-primary/90 hover:to-secondary/90 hover:shadow-[0_0_24px_rgba(59,130,246,0.42)]"
+          <button 
+            onClick={() => setIsContactModalOpen(true)}
+            className="rounded-full glass px-6 py-2.5 font-medium text-foreground transition-all bg-white/40 dark:bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.3)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:bg-white/60 dark:hover:bg-white/20"
           >
             Contact Us
-          </a>
+          </button>
           
           <ThemeToggle />
         </div>
@@ -133,14 +135,22 @@ export default function Navbar() {
             </a>
           ))}
 
-          <a 
-            href="mailto:coo@ostera.ai"
-            className="mt-2 text-center rounded-full bg-gradient-to-r from-primary to-secondary px-5 py-3 font-medium text-white"
+          <button 
+            onClick={() => {
+              setIsContactModalOpen(true);
+              setMobileMenuOpen(false);
+            }}
+            className="mt-2 text-center rounded-full glass px-5 py-3 font-medium text-foreground transition-all bg-white/40 dark:bg-white/10 shadow-[0_0_15px_rgba(255,255,255,0.3)] dark:shadow-[0_0_15px_rgba(255,255,255,0.1)] hover:bg-white/60 dark:hover:bg-white/20"
           >
             Contact Us
-          </a>
+          </button>
         </motion.div>
       )}
+
+      <ContactModal 
+        isOpen={isContactModalOpen} 
+        onClose={() => setIsContactModalOpen(false)} 
+      />
     </motion.nav>
   );
 }
