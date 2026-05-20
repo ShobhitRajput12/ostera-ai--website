@@ -359,51 +359,7 @@ const ParticleWaves = () => {
                     />
                   </div>
                 </div>
-
-                <div className="mt-2">
-                  <div className="mb-1 text-xs">Presets:</div>
-                  <div className="grid grid-cols-5 gap-1">
-                    <button
-                      type="button"
-                      onClick={() => applyPreset('#ffffff', '#000000')}
-                      className="h-6 w-full rounded border border-gray-600 transition-all hover:scale-105 hover:border-white"
-                      style={{ background: 'linear-gradient(90deg, #ffffff 50%, #000000 50%)' }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => applyPreset('#ff6b6b', '#0a0a0a')}
-                      className="h-6 w-full rounded border border-gray-600 transition-all hover:scale-105 hover:border-white"
-                      style={{ background: 'linear-gradient(90deg, #ff6b6b 50%, #0a0a0a 50%)' }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => applyPreset('#4ecdc4', '#1a1a2e')}
-                      className="h-6 w-full rounded border border-gray-600 transition-all hover:scale-105 hover:border-white"
-                      style={{ background: 'linear-gradient(90deg, #4ecdc4 50%, #1a1a2e 50%)' }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => applyPreset('#ffd93d', '#16213e')}
-                      className="h-6 w-full rounded border border-gray-600 transition-all hover:scale-105 hover:border-white"
-                      style={{ background: 'linear-gradient(90deg, #ffd93d 50%, #16213e 50%)' }}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => applyPreset('#a8e6cf', '#2c3e50')}
-                      className="h-6 w-full rounded border border-gray-600 transition-all hover:scale-105 hover:border-white"
-                      style={{ background: 'linear-gradient(90deg, #a8e6cf 50%, #2c3e50 50%)' }}
-                    />
-                  </div>
-                </div>
               </div>
-
-              <button
-                type="button"
-                onClick={() => window.open('https://rollout.dev', '_blank')}
-                className="mt-2 w-full rounded border border-white/20 bg-white/10 px-2 py-1 text-xs text-gray-400 transition-all hover:bg-white/15 hover:text-white"
-              >
-                Built with Rollout
-              </button>
             </div>
           )}
 

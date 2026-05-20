@@ -59,13 +59,13 @@ export default function Hero() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mt-[18px] inline-flex items-center gap-3.5 px-6 py-3 rounded-full glass-card border-white/10 mb-8 !overflow-visible sm:mt-0"
+                className="mt-[18px] inline-flex items-center gap-3.5 px-7 py-3.5 rounded-full glass-card border-white/10 mb-8 !overflow-visible sm:mt-0"
               >
                 <OsteraLogo
                   showText
-                  className="gap-3.5 sm:gap-4.5"
-                  markClassName="h-9 w-auto max-h-11 object-contain object-left sm:h-11"
-                  textClassName="text-xl font-semibold uppercase tracking-[0.12em] sm:text-2xl text-secondary"
+                  className="gap-3.5 sm:gap-4"
+                  markClassName="h-10 w-auto max-h-12 object-contain object-left sm:h-[46px]"
+                  textClassName="text-[22px] font-semibold uppercase tracking-[0.12em] sm:text-[26px] text-secondary"
                 />
               </motion.div>
 
