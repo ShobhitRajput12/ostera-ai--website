@@ -274,16 +274,7 @@ const ParticleWavesDemo = () => {
                 type="color"
                 value={particleColor}
                 onChange={(e) => setParticleColor(e.target.value)}
-                className="h-6 w-10 cursor-pointer rounded border-none"
-              />
-            </div>
-            <div className="flex-1">
-              <label className="mb-1 block text-xs">Background</label>
-              <input
-                type="color"
-                value={bgColor}
-                onChange={(e) => setBgColor(e.target.value)}
-                className="h-6 w-10 cursor-pointer rounded border-none"
+                className="h-6 w-10 cursor-pointer rounded border-none bg-transparent p-0 [&::-moz-color-swatch]:border-none [&::-moz-color-swatch]:rounded [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch]:rounded"
               />
             </div>
           </div>

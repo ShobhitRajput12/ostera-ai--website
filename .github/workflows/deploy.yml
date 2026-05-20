@@ -22,7 +22,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.OSTERA_WEBSITE_SSH_KEY  }}
+          key: ${{ secrets.OSTERA_WEBSITE_SSH_KEY }}
           port: 22
 
           script: |

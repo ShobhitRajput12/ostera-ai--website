@@ -271,7 +271,7 @@ const ParticleWaves = () => {
       <div ref={containerRef} className="absolute inset-0" />
 
       {createPortal(
-        <div className="pointer-events-auto fixed bottom-12 right-4 z-40 flex max-h-[calc(100vh-0.75rem)] flex-col items-end gap-2 sm:bottom-6 sm:right-6 sm:max-h-[calc(100vh-1.5rem)]">
+        <div className="pointer-events-auto fixed bottom-16 right-4 z-40 flex max-h-[calc(100vh-0.75rem)] flex-col items-end gap-2 sm:bottom-14 sm:right-6 sm:max-h-[calc(100vh-1.5rem)]">
           {controlsOpen && (
             <div className="max-h-[min(32rem,calc(100vh-8rem))] w-52 overflow-y-auto rounded-lg border border-gray-600 bg-black/90 p-4 text-xs text-white shadow-xl backdrop-blur-md">
               <div className="-mt-1 mb-2 flex items-center justify-end">
@@ -346,16 +346,7 @@ const ParticleWaves = () => {
                       type="color"
                       value={particleColor}
                       onChange={(e) => setParticleColor(e.target.value)}
-                      className="h-6 w-10 cursor-pointer rounded border-none"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <label className="mb-1 block text-xs">Background</label>
-                    <input
-                      type="color"
-                      value={bgColor}
-                      onChange={(e) => setBgColor(e.target.value)}
-                      className="h-6 w-10 cursor-pointer rounded border-none"
+                      className="h-6 w-10 cursor-pointer rounded border-none bg-transparent p-0 [&::-moz-color-swatch]:border-none [&::-moz-color-swatch]:rounded [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border-none [&::-webkit-color-swatch]:rounded"
                     />
                   </div>
                 </div>
